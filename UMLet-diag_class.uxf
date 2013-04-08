@@ -89,6 +89,7 @@ clée_acces
 intitulé
 commentaire
 valide:Booleen
+nombreVote: int
 --
 
 </panel_attributes>
