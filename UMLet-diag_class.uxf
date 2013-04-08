@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.5.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>190</x>
+      <y>200</y>
+      <w>120</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Professeur
+--
+nom
+prenom
+identifiant
+mot_de_passe
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>170</x>
+      <y>460</y>
+      <w>160</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>Question
+--
+intitulé
+commentaire
+créateur: Professeur
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>220</x>
+      <y>300</y>
+      <w>50</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;30;30;160</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>470</x>
+      <y>460</y>
+      <w>130</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>SessionReponse
+--
+question: Question
+reponse[]:Reponse
+visible:Booleen
+cloturé: Booleen
+clée_acces
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>300</x>
+      <y>520</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;30;170;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>750</x>
+      <y>460</y>
+      <w>130</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>Reponse
+--
+intitulé
+commentaire
+valide:Booleen
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>570</x>
+      <y>520</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>180;30;30;30</additional_attributes>
+  </element>
+</diagram>
