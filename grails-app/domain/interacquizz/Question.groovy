@@ -5,6 +5,10 @@ class Question {
 	String commentaire
 	Professeur createur
 	
+	String toString() {
+		intitule
+	}
+	
     static constraints = {
     }
 }

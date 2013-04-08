@@ -6,6 +6,10 @@ class Reponse {
 	Boolean valide
 	int vote
 	
+	String toString() {
+		intitule
+	}
+	
     static constraints = {
     }
 }

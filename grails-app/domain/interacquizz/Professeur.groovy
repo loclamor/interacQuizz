@@ -6,6 +6,10 @@ class Professeur {
 	String identifiant
 	String motDePasse
 	
+	String toString() {
+		prenom + " " + nom
+	}
+	
     static constraints = {
     }
 	
