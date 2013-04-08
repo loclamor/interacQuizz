@@ -4,8 +4,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>190</x>
-      <y>200</y>
+      <x>60</x>
+      <y>60</y>
       <w>120</w>
       <h>130</h>
     </coordinates>
@@ -22,8 +22,8 @@ mot_de_passe
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>170</x>
-      <y>460</y>
+      <x>40</x>
+      <y>320</y>
       <w>160</w>
       <h>170</h>
     </coordinates>
@@ -32,6 +32,7 @@ mot_de_passe
 intitulé
 commentaire
 créateur: Professeur
+sessions[]:SessionReponse
 --
 </panel_attributes>
     <additional_attributes/>
@@ -39,8 +40,8 @@ créateur: Professeur
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>220</x>
-      <y>300</y>
+      <x>90</x>
+      <y>160</y>
       <w>50</w>
       <h>180</h>
     </coordinates>
@@ -50,8 +51,8 @@ créateur: Professeur
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>470</x>
-      <y>460</y>
+      <x>340</x>
+      <y>320</y>
       <w>130</w>
       <h>170</h>
     </coordinates>
@@ -68,8 +69,8 @@ clée_acces
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>300</x>
-      <y>520</y>
+      <x>170</x>
+      <y>380</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -79,8 +80,8 @@ clée_acces
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>750</x>
-      <y>460</y>
+      <x>620</x>
+      <y>320</y>
       <w>130</w>
       <h>170</h>
     </coordinates>
@@ -98,8 +99,8 @@ nombreVote: int
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>570</x>
-      <y>520</y>
+      <x>440</x>
+      <y>380</y>
       <w>200</w>
       <h>50</h>
     </coordinates>
