@@ -89,6 +89,7 @@ clée_acces
 --
 intitulé
 commentaire
+session:SessionReponse
 valide:Booleen
 nombreVote: int
 --
