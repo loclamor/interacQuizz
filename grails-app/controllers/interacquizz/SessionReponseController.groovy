@@ -7,7 +7,55 @@ class SessionReponseController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	
 	def connect() {
-		redirect(action: "list", params: params)
+		
+		def sessR = SessionReponse.findByCleeAcces(params.get("codeSession"))
+		if(!sessR){
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), params.get("codeSession")])
+			redirect(uri: "/")
+			return
+		}
+		
+		println("connection a la session " + sessR.id + " pour la question \"" + sessR.getQuestion() + "\"")
+		println("session en phase " + sessR.getPhase())
+		
+		switch (sessR.getPhase()) {
+			case "ajoutReponses":
+				redirect(action: "phaseAjoutReponses", id: sessR.id)
+				break;
+			case "validation":
+				redirect(action: "phaseValidation", id: sessR.id)
+				break;
+			case "vote":
+				redirect(action: "phaseVote", id: sessR.id)
+				break;
+			case "resultat":
+				redirect(action: "phaseResultat", id: sessR.id)
+				break;
+	
+			default:
+				//flash.message = message(code: 'default.not.found.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), params.get("codeSession")])
+				redirect(uri: "/")
+				break;
+		}
+		
+		
+	}
+	
+	def phaseAjoutReponses(Long id) {
+		def sessionReponseInstance = SessionReponse.get(id)
+		[sessionReponseInstance: sessionReponseInstance]
+	}
+	
+	def phaseValidation(Long id) {
+	
+	}
+	
+	def phaseVote(Long id) {
+	
+	}
+	
+	def phaseResultat(Long id) {
+	
 	}
 
     def index() {
