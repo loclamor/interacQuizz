@@ -24,9 +24,9 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="cleeAcces" title="${message(code: 'sessionReponse.cleeAcces.label', default: 'Clee Acces')}" />
+						<g:sortableColumn property="phase" title="${message(code: 'sessionReponse.phase.label', default: 'Phase')}" />
 					
-						<g:sortableColumn property="cloture" title="${message(code: 'sessionReponse.cloture.label', default: 'Cloture')}" />
+						<g:sortableColumn property="cleeAcces" title="${message(code: 'sessionReponse.cleeAcces.label', default: 'Clee Acces')}" />
 					
 						<th><g:message code="sessionReponse.question.label" default="Question" /></th>
 					
@@ -38,9 +38,9 @@
 				<g:each in="${sessionReponseInstanceList}" status="i" var="sessionReponseInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${sessionReponseInstance.id}">${fieldValue(bean: sessionReponseInstance, field: "cleeAcces")}</g:link></td>
+						<td><g:link action="show" id="${sessionReponseInstance.id}">${fieldValue(bean: sessionReponseInstance, field: "phase")}</g:link></td>
 					
-						<td><g:formatBoolean boolean="${sessionReponseInstance.cloture}" /></td>
+						<td>${fieldValue(bean: sessionReponseInstance, field: "cleeAcces")}</td>
 					
 						<td>${fieldValue(bean: sessionReponseInstance, field: "question")}</td>
 					

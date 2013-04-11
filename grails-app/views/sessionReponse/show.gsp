@@ -23,20 +23,20 @@
 			</g:if>
 			<ol class="property-list sessionReponse">
 			
+				<g:if test="${sessionReponseInstance?.phase}">
+				<li class="fieldcontain">
+					<span id="phase-label" class="property-label"><g:message code="sessionReponse.phase.label" default="Phase" /></span>
+					
+						<span class="property-value" aria-labelledby="phase-label"><g:fieldValue bean="${sessionReponseInstance}" field="phase"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${sessionReponseInstance?.cleeAcces}">
 				<li class="fieldcontain">
 					<span id="cleeAcces-label" class="property-label"><g:message code="sessionReponse.cleeAcces.label" default="Clee Acces" /></span>
 					
 						<span class="property-value" aria-labelledby="cleeAcces-label"><g:fieldValue bean="${sessionReponseInstance}" field="cleeAcces"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${sessionReponseInstance?.cloture}">
-				<li class="fieldcontain">
-					<span id="cloture-label" class="property-label"><g:message code="sessionReponse.cloture.label" default="Cloture" /></span>
-					
-						<span class="property-value" aria-labelledby="cloture-label"><g:formatBoolean boolean="${sessionReponseInstance?.cloture}" /></span>
 					
 				</li>
 				</g:if>

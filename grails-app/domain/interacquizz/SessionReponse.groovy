@@ -4,9 +4,10 @@ class SessionReponse {
 	Question question
 	static hasMany = [reponses:Reponse]
 	Boolean visible
-	Boolean cloture
+	String phase
 	String cleeAcces
 	
     static constraints = {
+		phase inList: ["ajoutReponses", "validation", "vote", "resultat"]
     }
 }

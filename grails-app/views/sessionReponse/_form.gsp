@@ -2,20 +2,20 @@
 
 
 
+<div class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'phase', 'error')} ">
+	<label for="phase">
+		<g:message code="sessionReponse.phase.label" default="Phase" />
+		
+	</label>
+	<g:select name="phase" from="${sessionReponseInstance.constraints.phase.inList}" value="${sessionReponseInstance?.phase}" valueMessagePrefix="sessionReponse.phase" noSelection="['': '']"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'cleeAcces', 'error')} ">
 	<label for="cleeAcces">
 		<g:message code="sessionReponse.cleeAcces.label" default="Clee Acces" />
 		
 	</label>
 	<g:textField name="cleeAcces" value="${sessionReponseInstance?.cleeAcces}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'cloture', 'error')} ">
-	<label for="cloture">
-		<g:message code="sessionReponse.cloture.label" default="Cloture" />
-		
-	</label>
-	<g:checkBox name="cloture" value="${sessionReponseInstance?.cloture}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'question', 'error')} required">
