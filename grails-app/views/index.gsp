@@ -6,7 +6,9 @@
 
 </head>
 <body>
-
+	<g:if test="${flash.message}">
+		<div class="message" role="status">${flash.message}</div>
+	</g:if>
 	<g:form controller="sessionReponse" action="connect" class="well span6 offset3" >
 		<fieldset>
 			<legend >Accéder à une Question</legend>
