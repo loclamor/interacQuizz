@@ -6,16 +6,20 @@
 
 </head>
 <body>
-	<g:if test="${flash.message}">
-		<div class="message" role="status">${flash.message}</div>
-	</g:if>
+	
 	<g:form controller="sessionReponse" action="connect" class="well span6 offset3" >
 		<fieldset>
 			<legend >Accéder à une Question</legend>
-			<div class="input-append">
-				<g:textField type="password" name="codeSession" class="" placeholder="Entrez le code secret..."/>
+			<div class="input-append row-fluid">
+				<g:passwordField name="codeSession" class="span10" placeholder="Entrez le code secret..." required=""/>
 				<button type="submit" name="submit_codeSession" class="btn btn-primary" >Valider</button>
 			</div>
+			<g:if test="${flash.message}">
+				<div class="alert alert-error" role="status">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					${flash.message}
+				</div>
+			</g:if>
 			<br>
 			<span>
 				Ou connectez vous avec votre 
