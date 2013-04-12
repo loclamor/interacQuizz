@@ -16,7 +16,7 @@ class SessionReponseController {
 			return
 		}
 		
-		println("connection a la session " + sessR.id + " pour la question \"" + sessR.getQuestion() + "\"")
+		println("connexion a la session " + sessR.id + " pour la question \"" + sessR.getQuestion() + "\"")
 		println("session en phase " + sessR.getPhase())
 		
 		switch (sessR.getPhase()) {

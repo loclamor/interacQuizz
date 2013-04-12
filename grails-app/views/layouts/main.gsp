@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -29,7 +29,7 @@
 <body>
 	<div class="navbar">
 		<div class="navbar-inner">
-			<a class="brand" href="#">InteracQuizz</a>
+			<a class="brand" href="${createLink(uri: '/')}">InteracQuizz</a>
 			<ul class="nav">
 				<li><a href="${createLink(uri: '/')}">Accéder à une question</a></li>
 				<li><g:link controller="professeur" action="connect">Compte Professeur</g:link></li>
