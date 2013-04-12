@@ -61,7 +61,7 @@ sessions[]:SessionReponse
 question: Question
 reponse[]:Reponse
 visible:Booleen
-cloturé: Booleen
+phase: string
 clée_acces
 --</panel_attributes>
     <additional_attributes/>
