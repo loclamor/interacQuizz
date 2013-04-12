@@ -11,6 +11,10 @@ class Professeur {
 	}
 	
     static constraints = {
+		nom(blank:false)
+		prenom(blank:false)
+		identifiant(blank:false)
+		motDePasse(blank:false)
     }
 	
 	

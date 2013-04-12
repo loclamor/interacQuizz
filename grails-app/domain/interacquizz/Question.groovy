@@ -11,5 +11,7 @@ class Question {
 	}
 	
     static constraints = {
+		intitule(blank:false)
+		commentaire(blank:true)
     }
 }

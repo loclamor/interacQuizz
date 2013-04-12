@@ -12,5 +12,6 @@ class Reponse {
 	}
 	
     static constraints = {
+		intitule(blank:false)
     }
 }

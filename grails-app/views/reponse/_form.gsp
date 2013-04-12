@@ -15,7 +15,7 @@
 		<g:message code="reponse.intitule.label" default="Intitule" />
 		
 	</label>
-	<g:textField name="intitule" value="${reponseInstance?.intitule}"/>
+	<g:textField name="intitule" value="${reponseInstance?.intitule}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: reponseInstance, field: 'session', 'error')} required">

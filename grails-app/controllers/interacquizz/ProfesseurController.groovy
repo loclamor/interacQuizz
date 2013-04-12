@@ -10,6 +10,10 @@ class ProfesseurController {
         redirect(action: "list", params: params)
     }
 
+	def connect() {
+		
+	}
+	
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         [professeurInstanceList: Professeur.list(params), professeurInstanceTotal: Professeur.count()]
