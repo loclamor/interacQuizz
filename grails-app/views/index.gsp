@@ -6,7 +6,7 @@
 
 </head>
 <body>
-	
+	<div class="span12"></div>
 	<g:form controller="sessionReponse" action="connect" class="well span6 offset3" >
 		<fieldset>
 			<legend >Accéder à une Question</legend>
@@ -27,17 +27,18 @@
 			</span>
 		</fieldset>
 	</g:form>
-
-	<h2>Available Controllers:</h2>
-	<ul>
-		<g:each var="c"
-			in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-			<li class="controller">
-				<g:link controller="${c.logicalPropertyName}">
-					${c.fullName}
-				</g:link>
-			</li>
-		</g:each>
-	</ul>
+	<div class="span12">
+		<h2>Available Controllers:</h2>
+		<ul>
+			<g:each var="c"
+				in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+				<li class="controller">
+					<g:link controller="${c.logicalPropertyName}">
+						${c.fullName}
+					</g:link>
+				</li>
+			</g:each>
+		</ul>
+	</div>
 </body>
 </html>
