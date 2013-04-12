@@ -11,7 +11,7 @@ class SessionReponseController {
 		def sessR = SessionReponse.findByCleeAcces(params.get("codeSession"))
 		if(!sessR){
 			//flash.message = message(code: 'default.not.found.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), params.get("codeSession")])
-			flash.message = "ce code est inconnu"
+			flash.messageErreur = "ce code est inconnu"
 			redirect(uri: "/")
 			return
 		}
@@ -34,7 +34,7 @@ class SessionReponseController {
 				break;
 	
 			default:
-				flash.message = "phase de question inconnue"
+				flash.messageErreur = "phase de question inconnue"
 				redirect(uri: "/")
 				break;
 		}

@@ -16,7 +16,7 @@
 					<g:textField name="nouvelleReponse" class="span10" placeholder="Entrez une proposition de reponse..." required="" />
 					<button type="submit" name="submit_nouvelleReponse" class="btn btn-primary" >Ajouter</button>
 				</div>
-				<g:if test="${flash.message}">
+				<g:if test="${flash.messageErreur}">
 					<div class="alert alert-error" role="status">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
 						${flash.message}
