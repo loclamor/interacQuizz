@@ -41,11 +41,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${reponseInstance?.session}">
+				<g:if test="${reponseInstance?.sessionRep}">
 				<li class="fieldcontain">
 					<span id="session-label" class="property-label"><g:message code="reponse.session.label" default="Session" /></span>
 					
-						<span class="property-value" aria-labelledby="session-label"><g:link controller="sessionReponse" action="show" id="${reponseInstance?.session?.id}">${reponseInstance?.session?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="session-label"><g:link controller="sessionReponse" action="show" id="${reponseInstance?.sessionRep?.id}">${reponseInstance?.sessionRep?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

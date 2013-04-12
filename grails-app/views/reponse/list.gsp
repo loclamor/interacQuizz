@@ -44,7 +44,7 @@
 					
 						<td>${fieldValue(bean: reponseInstance, field: "intitule")}</td>
 					
-						<td>${fieldValue(bean: reponseInstance, field: "session")}</td>
+						<td>${fieldValue(bean: reponseInstance, field: "sessionRep")}</td>
 					
 						<td><g:formatBoolean boolean="${reponseInstance.valide}" /></td>
 					

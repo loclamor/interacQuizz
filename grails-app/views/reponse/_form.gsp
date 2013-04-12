@@ -23,7 +23,7 @@
 		<g:message code="reponse.session.label" default="Session" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="session" name="session.id" from="${interacquizz.SessionReponse.list()}" optionKey="id" required="" value="${reponseInstance?.session?.id}" class="many-to-one"/>
+	<g:select id="sessionRep" name="session.id" from="${interacquizz.SessionReponse.list()}" optionKey="id" required="" value="${reponseInstance?.sessionRep?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: reponseInstance, field: 'valide', 'error')} ">

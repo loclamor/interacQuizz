@@ -12,7 +12,22 @@ class ReponseController {
 	
 	def ajout() {
 		
-		flash.messageInfo = "Reponse ajoutee"
+		def sessR = SessionReponse.get(params.get("idSessionReponse"))
+		if(!sessR) {
+			flash.messageErreur = "Impossible de trouver la session"
+			redirect(controller: "sessionReponse", action: "phaseAjoutReponses", id: params.get("idSessionReponse"))
+			return
+		}
+		
+		def rep = new Reponse(intitule: params.get("nouvelleReponse"), commentaire: "", sessionRep: sessR, valide: false, vote: 0)
+		if(!rep.save(flush:true)){
+			println("!!!! erreur enregistrement reponse");
+			flash.messageErreur = "Une erreur est survenue lors de l'enregistrement de la réponse"
+			rep.errors.allErrors.each( {e -> println (e) } )
+		}
+		else {
+			flash.messageInfo = "Reponse ajoutee"
+		}
 		redirect(controller: "sessionReponse", action: "phaseAjoutReponses", id: params.get("idSessionReponse"))
 	}
 

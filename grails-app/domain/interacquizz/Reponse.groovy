@@ -3,7 +3,7 @@ package interacquizz
 class Reponse {
 	String intitule
 	String commentaire
-	SessionReponse session
+	SessionReponse sessionRep
 	Boolean valide
 	int vote
 	
