@@ -19,7 +19,7 @@
 				<g:if test="${flash.messageErreur}">
 					<div class="alert alert-error" role="status">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						${flash.message}
+						${flash.messageErreur}
 					</div>
 				</g:if>
 				<g:if test="${flash.messageInfo}">
