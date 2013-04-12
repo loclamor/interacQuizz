@@ -9,6 +9,12 @@ class ReponseController {
     def index() {
         redirect(action: "list", params: params)
     }
+	
+	def ajout() {
+		
+		flash.messageInfo = "Reponse ajoutee"
+		redirect(controller: "sessionReponse", action: "phaseAjoutReponses", id: params.get("idSessionReponse"))
+	}
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
