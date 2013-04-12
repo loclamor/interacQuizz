@@ -14,7 +14,15 @@ class ReponseController {
 		
 		def sessR = SessionReponse.get(params.get("idSessionReponse"))
 		if(!sessR) {
+			println("!!!! session " + params.get("idSessionReponse") + " non trouvee")
 			flash.messageErreur = "Impossible de trouver la session"
+			redirect(controller: "sessionReponse", action: "phaseAjoutReponses", id: params.get("idSessionReponse"))
+			return
+		}
+		
+		if(sessR.getPhase() != "ajoutReponses") {
+			println("Ajout hors phase")
+			flash.messageErreur = "Phase d'ajout terminee. Passez a la phase suivante."
 			redirect(controller: "sessionReponse", action: "phaseAjoutReponses", id: params.get("idSessionReponse"))
 			return
 		}
@@ -22,10 +30,11 @@ class ReponseController {
 		def rep = new Reponse(intitule: params.get("nouvelleReponse"), commentaire: "", sessionRep: sessR, valide: false, vote: 0)
 		if(!rep.save(flush:true)){
 			println("!!!! erreur enregistrement reponse");
-			flash.messageErreur = "Une erreur est survenue lors de l'enregistrement de la réponse"
+			flash.messageErreur = "Une erreur est survenue lors de l'enregistrement de la reponse"
 			rep.errors.allErrors.each( {e -> println (e) } )
 		}
 		else {
+			println("Reponse \"" + rep + "\" ajoutee a la question \"" + sessR.getQuestion() + "\"")
 			flash.messageInfo = "Reponse ajoutee"
 		}
 		redirect(controller: "sessionReponse", action: "phaseAjoutReponses", id: params.get("idSessionReponse"))
