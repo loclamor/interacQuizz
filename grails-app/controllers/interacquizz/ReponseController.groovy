@@ -10,6 +10,60 @@ class ReponseController {
         redirect(action: "list", params: params)
     }
 	
+	def setValide(Long id) {
+		def reponseInstance = Reponse.get(id)
+        if (!reponseInstance) {
+			flash.erreur = "reponse inexistante"
+			flash.id = id
+            render(contentType: "text/json") {
+				flash
+			}
+            return
+        }
+
+		reponseInstance.setValide(true)
+
+		if (!reponseInstance.save(flush: true)) {
+			flash.erreur = "erreur d'enregistrement"
+			flash.id = id
+            render(contentType: "text/json") {
+				flash
+			}
+			return
+		}
+		
+		render(contentType: "text/json") {
+			reponseInstance
+		}
+	}
+	
+	def setMauvaise(Long id) {
+		def reponseInstance = Reponse.get(id)
+		if (!reponseInstance) {
+			flash.erreur = "reponse inexistante"
+			flash.id = id
+            render(contentType: "text/json") {
+				flash
+			}
+			return
+		}
+		
+		reponseInstance.setValide(false)
+		
+		if (!reponseInstance.save(flush: true)) {
+			flash.erreur = "erreur d'enregistrement"
+			flash.id = id
+			render(contentType: "text/json") {
+				flash
+			}
+			return
+		}
+		
+		render(contentType: "text/json") {
+			reponseInstance
+		}
+	}
+	
 	def ajout() {
 		
 		def sessR = SessionReponse.get(params.get("idSessionReponse"))
