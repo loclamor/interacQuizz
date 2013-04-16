@@ -44,6 +44,10 @@ class SessionReponseController {
 	
 	def phaseAjoutReponses(Long id) {
 		def sessionReponseInstance = SessionReponse.get(id)
+		if( !sessionReponseInstance) {
+			flash.messageErreur = "Session inconnue"
+			redirect(uri: "/")
+		}
 		[sessionReponseInstance: sessionReponseInstance]
 	}
 	
@@ -58,6 +62,15 @@ class SessionReponseController {
 	def phaseResultat(Long id) {
 	
 	}
+	
+	def validationReponses(Long id) {
+		def sessionReponseInstance = SessionReponse.get(id)
+		if( !sessionReponseInstance) {
+			flash.messageErreur = "Session inconnue"
+			redirect(uri: "/")
+		}
+		[sessionReponseInstance: sessionReponseInstance]
+	}
 
     def index() {
         redirect(action: "list", params: params)
@@ -65,7 +78,8 @@ class SessionReponseController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [sessionReponseInstanceList: SessionReponse.list(params), sessionReponseInstanceTotal: SessionReponse.count()]
+        [sessionReponseInstanceList: SessionReponse.list(params),
+			sessionReponseInstanceTotal: SessionReponse.count()]
     }
 
     def create() {
