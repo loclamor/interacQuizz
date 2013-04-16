@@ -14,10 +14,10 @@
 				<g:passwordField name="codeSession" class="span10" placeholder="Entrez le code secret..." required=""/>
 				<button type="submit" name="submit_codeSession" class="btn btn-primary" >Valider</button>
 			</div>
-			<g:if test="${flash.message}">
+			<g:if test="${flash.messageErreur}">
 				<div class="alert alert-error" role="status">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					${flash.message}
+					${flash.messageErreur}
 				</div>
 			</g:if>
 			<br>
