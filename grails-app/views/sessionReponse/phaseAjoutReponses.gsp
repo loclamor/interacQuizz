@@ -11,7 +11,10 @@
 		<g:form controller="reponse" action="ajout" class="well span6 offset3" >
 			<g:hiddenField name="idSessionReponse" value="${sessionReponseInstance?.id}" />
 			<fieldset>
-				<legend>${sessionReponseInstance.getQuestion() }</legend>
+				<legend>
+					${sessionReponseInstance.getQuestion() }
+					<g:link controller="sessionReponse" action="phaseVote" class="btn pull-right">Vote <i class="icon-fast-forward"></i></g:link>
+				</legend>
 				<div class="input-append row-fluid">
 					<g:textField name="nouvelleReponse" class="span10" placeholder="Entrez une proposition de reponse..." required="" />
 					<button type="submit" name="submit_nouvelleReponse" class="btn btn-primary" >Ajouter</button>
@@ -30,8 +33,5 @@
 				</g:if>
 			</fieldset>
 		</g:form>
-		<div class="span6 offset3">
-			<g:link class="btn btn-large pull-right">Passer au vote</g:link>
-		</div>
 	</body>
 </html>
