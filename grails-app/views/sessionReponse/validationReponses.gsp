@@ -9,10 +9,23 @@
 	</head>
 	<body>
 		<div class="span12"></div>
-		<div class="well span6 offset3">
+		<div class="well span8 offset2">
 			<fieldset>
 				<legend>
-					${ sessionReponseInstance.getQuestion() }
+					<g:link controller="sessionReponse" action="validationReponses" id="${ sessionReponseInstance.getId() }" class="btn" role="button" ><i class="icon-refresh"></i></g:link>
+					 ${ sessionReponseInstance.getQuestion() }
+					<span class="muted pull-right">
+						Phase 
+						<g:if test="${ sessionReponseInstance.getPhase() == "ajoutReponses" }">d'ajout de réponses 
+							<g:link controller="sessionReponse" action="cloturerReponses" id="${ sessionReponseInstance.getId() }" class="btn" role="button" ><i class="icon-time"></i> Clôturer</g:link>
+						</g:if>
+						<g:else>de validation 
+							<div class="btn-group" >
+								<g:link controller="sessionReponse" action="retourAjout" id="${ sessionReponseInstance.getId() }" class="btn" role="button" ><i class="icon-fast-backward"></i> Ajout</g:link>
+								<g:link controller="sessionReponse" action="lancerVote" id="${ sessionReponseInstance.getId() }" class="btn" role="button" >Vote <i class="icon-fast-forward"></i></g:link>
+							</div>
+						</g:else>
+					</span>
 				</legend>
 				<div class="alert alert-info">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -21,7 +34,7 @@
 				</div>
 				<table class="table table-striped">
 	
-					<g:each in="${sessionReponseInstance.reponses}" var="reponse">
+					<g:each in="${reponsesInstance}" var="reponse">
 						<tr reponse-id="${ reponse.getId() }">
 							<td>
 								<span class="reponseIntitule">${ reponse }</span><br>

@@ -47,6 +47,7 @@ class SessionReponseController {
 		if( !sessionReponseInstance) {
 			flash.messageErreur = "Session inconnue"
 			redirect(uri: "/")
+			return
 		}
 		[sessionReponseInstance: sessionReponseInstance]
 	}
@@ -69,7 +70,67 @@ class SessionReponseController {
 			flash.messageErreur = "Session inconnue"
 			redirect(uri: "/")
 		}
-		[sessionReponseInstance: sessionReponseInstance]
+		[sessionReponseInstance: sessionReponseInstance, reponsesInstance: Reponse.findAllBySessionRep(sessionReponseInstance)]
+	}
+	
+	def cloturerReponses(Long id) {
+		def sessionReponseInstance = SessionReponse.get(id)
+		if( !sessionReponseInstance) {
+			flash.messageErreur = "Session inconnue"
+			redirect(uri: "/")
+			return
+		}
+		
+		sessionReponseInstance.setPhase("validation")
+		
+		if (!sessionReponseInstance.save(flush: true)) {
+			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
+			flash.erreur = "erreur d'enregistrement"
+			flash.id = id
+			redirect(uri: "/")
+			return
+		}
+		
+		redirect(action: "validationReponses", params: params)
+	}
+	
+	def retourAjout(Long id) {
+		def sessionReponseInstance = SessionReponse.get(id)
+		if( !sessionReponseInstance) {
+			flash.messageErreur = "Session inconnue"
+			redirect(uri: "/")
+			return
+		}
+		
+		sessionReponseInstance.setPhase("ajoutReponses")
+		
+		if (!sessionReponseInstance.save(flush: true)) {
+			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
+			flash.erreur = "erreur d'enregistrement"
+			flash.id = id
+			redirect(uri: "/")
+			return
+		}
+		
+		redirect(action: "validationReponses", params: params)
+	}
+	def lancerVote(Long id) {
+		def sessionReponseInstance = SessionReponse.get(id)
+		if( !sessionReponseInstance) {
+			flash.messageErreur = "Session inconnue"
+			redirect(uri: "/")
+			return
+		}
+		
+		sessionReponseInstance.setPhase("vote")
+		
+		if (!sessionReponseInstance.save(flush: true)) {
+			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
+			flash.erreur = "erreur d'enregistrement"
+			flash.id = id
+			redirect(uri: "/")
+			return
+		}
 	}
 
     def index() {
