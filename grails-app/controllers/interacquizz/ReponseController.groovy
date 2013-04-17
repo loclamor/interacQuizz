@@ -9,10 +9,11 @@ class ReponseController {
     def index() {
         redirect(action: "list", params: params)
     }
-	
+		
 	def setValide(Long id) {
 		def reponseInstance = Reponse.get(id)
         if (!reponseInstance) {
+			reponseInstance.errors.allErrors.each( {e -> println (e) } )
 			flash.erreur = "reponse inexistante"
 			flash.id = id
             render(contentType: "text/json") {
@@ -24,6 +25,7 @@ class ReponseController {
 		reponseInstance.setValide(true)
 
 		if (!reponseInstance.save(flush: true)) {
+			reponseInstance.errors.allErrors.each( {e -> println (e) } )
 			flash.erreur = "erreur d'enregistrement"
 			flash.id = id
             render(contentType: "text/json") {
@@ -40,6 +42,7 @@ class ReponseController {
 	def setMauvaise(Long id) {
 		def reponseInstance = Reponse.get(id)
 		if (!reponseInstance) {
+			reponseInstance.errors.allErrors.each( {e -> println (e) } )
 			flash.erreur = "reponse inexistante"
 			flash.id = id
             render(contentType: "text/json") {
@@ -51,6 +54,54 @@ class ReponseController {
 		reponseInstance.setValide(false)
 		
 		if (!reponseInstance.save(flush: true)) {
+			reponseInstance.errors.allErrors.each( {e -> println (e) } )
+			flash.erreur = "erreur d'enregistrement"
+			flash.id = id
+			render(contentType: "text/json") {
+				flash
+			}
+			return
+		}
+		
+		render(contentType: "text/json") {
+			reponseInstance
+		}
+	}
+	
+	def getJson(Long id) {
+		def reponseInstance = Reponse.get(id)
+		if (!reponseInstance) {
+			reponseInstance.errors.allErrors.each( {e -> println (e) } )
+			flash.erreur = "reponse inexistante"
+			flash.id = id
+			render(contentType: "text/json") {
+				flash
+			}
+			return
+		}
+		
+		render(contentType: "text/json") {
+			reponseInstance
+		}
+	}
+	
+	def setCommentaire(Long id) {
+		def reponseInstance = Reponse.get(id)
+		if (!reponseInstance) {
+			reponseInstance.errors.allErrors.each( {e -> println (e) } )
+			flash.erreur = "reponse inexistante"
+			flash.id = id
+			render(contentType: "text/json") {
+				flash
+			}
+			return
+		}
+		
+		reponseInstance.setCommentaire(params.reponseCommentaire)
+		reponseInstance.setIntitule(params.reponseIntitule)
+		
+		if (!reponseInstance.save(flush: true)) {
+			reponseInstance.errors.allErrors.each( {e -> println (e) } )
 			flash.erreur = "erreur d'enregistrement"
 			flash.id = id
 			render(contentType: "text/json") {
