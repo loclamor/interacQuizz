@@ -14,6 +14,11 @@ class ProfesseurController {
 		
 	}
 	
+	def connexion() {
+		flash.messageErreur = "Identifiant ou mot de passe incorrecte"
+		redirect(action: "connect")
+	}
+	
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         [professeurInstanceList: Professeur.list(params), professeurInstanceTotal: Professeur.count()]
