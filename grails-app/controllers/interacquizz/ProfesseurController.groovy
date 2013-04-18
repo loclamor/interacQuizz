@@ -11,12 +11,29 @@ class ProfesseurController {
     }
 
 	def connect() {
-		
+		if( session.prof ) {
+			redirect(controller: "question", action: "list")
+			return
+		}
 	}
 	
 	def connexion() {
-		flash.messageErreur = "Identifiant ou mot de passe incorrecte"
-		redirect(action: "connect")
+		def prof = Professeur.findByIdentifiantAndMotDePasse(params.identifiant, params.motDePasse)
+		if(!prof) {
+			flash.messageErreur = "Identifiant ou mot de passe incorrecte"
+			redirect(action: "connect")
+			return
+		}
+		session.prof = prof
+		flash.messageInfo = "Authentification r&eacute;ussie"
+		redirect(controller: "question", action: "list")
+	}
+	
+	def deconnexion() {
+		session.removeAttribute("prof")
+		session.invalidate()
+		flash.messageInfo = "D&eacute;connexion r&eacute;ussie"
+		redirect(uri: "/")
 	}
 	
     def list(Integer max) {
