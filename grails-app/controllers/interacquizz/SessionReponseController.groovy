@@ -76,23 +76,73 @@ class SessionReponseController {
 				return
 				break;
 			case "validation":
-			flash.messageInfo = "phase de validation en cours"
+				flash.messageInfo = "phase de validation en cours"
 				redirect(action: "phaseValidation", id: id)
 				return
 				break;
 			case "resultat":
-				redirect(action: "phaseResultat", id: sessR.id)
+				redirect(action: "phaseResultat", id: id)
 				return
 				break;
 			case "vote":
+				if( session.aVote ) {
+					flash.messageInfo = "Vous avez deja vot&eacute;"
+					redirect(action: "phaseResultat", id: id)
+					return
+				}
+				break
 			default:
 				break;
 		}
+		[sessionReponseInstance: sessionReponseInstance, reponsesInstance: Reponse.findAllBySessionRep(sessionReponseInstance)]
+	}
+	
+	def voter(Long id) {
+		def reponseInstance = Reponse.get(id)
+		if( !reponseInstance) {
+			flash.messageErreur = "Reponse inconnue"
+			redirect(uri: "/")
+		}
 		
+		if( session.aVote ) {
+			flash.messageInfo = "Vous avez deja vot&eacute;"
+			redirect( action: "phaseResultat", id: reponseInstance.sessionRep.getId() )
+			return
+		}
+		
+		def vote = new Vote(reponse: reponseInstance)
+		if (!vote.save(flush: true)) {
+			vote.errors.allErrors.each( {e -> println (e) } )
+			flash.messageErreur = "erreur d'enregistrement"
+			redirect( action: "phaseVote", id: reponseInstance.sessionRep.getId() )
+			return
+		}
+		
+		session.aVote = reponseInstance
+		redirect( action: "phaseResultat", id: reponseInstance.sessionRep.getId() )
 	}
 	
 	def phaseResultat(Long id) {
-	
+		
+		def sessionReponseInstance = SessionReponse.get(id)
+		if( !sessionReponseInstance) {
+			flash.messageErreur = "Session inconnue"
+			redirect(uri: "/")
+		}
+		
+		def reponses = Reponse.findAllBySessionRep(sessionReponseInstance)
+		def votesMap = [:]
+		
+		for (Reponse rep : reponses) {
+			def votes = Vote.countByReponse( rep )
+			votesMap[rep.getId()] = votes
+		}
+		
+		println(votesMap)
+		
+		[sessionReponseInstance: sessionReponseInstance,
+			reponsesInstance: reponses,
+			votes: votesMap]
 	}
 	
 	def validationReponses(Long id) {
@@ -124,7 +174,7 @@ class SessionReponseController {
 		
 		if (!sessionReponseInstance.save(flush: true)) {
 			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
-			flash.erreur = "erreur d'enregistrement"
+			flash.messageErreur = "erreur d'enregistrement"
 			flash.id = id
 			redirect(uri: "/")
 			return
@@ -149,7 +199,7 @@ class SessionReponseController {
 		
 		if (!sessionReponseInstance.save(flush: true)) {
 			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
-			flash.erreur = "erreur d'enregistrement"
+			flash.messageErreur = "erreur d'enregistrement"
 			flash.id = id
 			redirect(uri: "/")
 			return
