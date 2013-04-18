@@ -23,7 +23,7 @@
 				<div class="control-group">
 					<label class="control-label" for="motDePasse">Mot de Passe</label>
     				<div class="controls">
-      						<g:textField name="motDePasse" type="password" class="span10" placeholder="mot de passe" required="" />
+      						<g:passwordField name="motDePasse" type="password" class="span10" placeholder="mot de passe" required="" />
     				</div>
     			</div>
     			<div class="control-group">
