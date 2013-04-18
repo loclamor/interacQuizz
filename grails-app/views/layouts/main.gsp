@@ -37,6 +37,12 @@
 						question</a></li>
 				<li><g:link controller="professeur" action="connect">Compte Professeur</g:link></li>
 			</ul>
+			<g:if test="${ session.prof }">
+				<ul class="nav pull-right">
+					<li><g:link controller="professeur" action="edit" id="${ session.prof.getId() }" >Connecté en tant que ${ session.prof }</g:link></li>
+					<li><g:link controller="professeur" action="deconnexion" class=""><i class="icon-off"></i> Se déconnecter</g:link></li>
+				</ul>
+			</g:if>
 		</div>
 	</div>
 	<div class="container-fluid">
