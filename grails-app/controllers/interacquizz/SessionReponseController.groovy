@@ -53,11 +53,42 @@ class SessionReponseController {
 	}
 	
 	def phaseValidation(Long id) {
-	
+		def sessionReponseInstance = SessionReponse.get(id)
+		if( !sessionReponseInstance) {
+			flash.messageErreur = "Session inconnue"
+			redirect(uri: "/")
+		}
+		
+		[sessionReponseInstance: sessionReponseInstance]
 	}
 	
 	def phaseVote(Long id) {
-	
+		def sessionReponseInstance = SessionReponse.get(id)
+		if( !sessionReponseInstance) {
+			flash.messageErreur = "Session inconnue"
+			redirect(uri: "/")
+		}
+		
+		switch (sessionReponseInstance.getPhase()) {
+			case "ajoutReponses":
+				flash.messageInfo = "phase d'ajout de r&eacute;ponses"
+				redirect(action: "phaseAjoutReponses", id: id)
+				return
+				break;
+			case "validation":
+			flash.messageInfo = "phase de validation en cours"
+				redirect(action: "phaseValidation", id: id)
+				return
+				break;
+			case "resultat":
+				redirect(action: "phaseResultat", id: sessR.id)
+				return
+				break;
+			case "vote":
+			default:
+				break;
+		}
+		
 	}
 	
 	def phaseResultat(Long id) {

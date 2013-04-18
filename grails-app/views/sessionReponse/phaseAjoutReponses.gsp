@@ -8,12 +8,12 @@
 	</head>
 	<body>
 		<div class="span12"></div>
-		<g:form controller="reponse" action="ajout" class="well span6 offset3" >
+		<g:form controller="reponse" action="ajout" class="well span8 offset2" >
 			<g:hiddenField name="idSessionReponse" value="${sessionReponseInstance?.id}" />
 			<fieldset>
 				<legend>
 					${sessionReponseInstance.getQuestion() }
-					<g:link controller="sessionReponse" action="phaseVote" class="btn pull-right">Vote <i class="icon-fast-forward"></i></g:link>
+					<g:link controller="sessionReponse" action="phaseVote" id="${sessionReponseInstance?.id}" class="btn pull-right">Vote <i class="icon-fast-forward"></i></g:link>
 				</legend>
 				<div class="input-append row-fluid">
 					<g:textField name="nouvelleReponse" class="span10" placeholder="Entrez une proposition de reponse..." required="" />
