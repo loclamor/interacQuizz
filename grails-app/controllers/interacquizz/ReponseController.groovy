@@ -144,6 +144,35 @@ class ReponseController {
 		}
 		redirect(controller: "sessionReponse", action: "phaseAjoutReponses", id: params.get("idSessionReponse"))
 	}
+	
+	def ajoutProfesseur(Long id){
+		def sessR = SessionReponse.get(id)
+		if(!sessR) {
+			println("!!!! session " + id + " non trouvee")
+			flash.messageErreur = "Impossible de trouver la session"
+			redirect(controller: "sessionReponse", action: "validationReponses", id: id)
+			return
+		}
+		
+		if(sessR.getPhase() != "ajoutReponses") {
+			println("Ajout hors phase")
+			flash.messageErreur = "Phase d'ajout terminee. Passez a la phase suivante."
+			redirect(controller: "sessionReponse", action: "validationReponses", id: id)
+			return
+		}
+		
+		def rep = new Reponse(intitule: params.get("nouvelleReponse"), commentaire: "", sessionRep: sessR, valide: false, vote: 0)
+		if(!rep.save(flush:true)){
+			println("!!!! erreur enregistrement reponse");
+			flash.messageErreur = "Une erreur est survenue lors de l'enregistrement de la reponse"
+			rep.errors.allErrors.each( {e -> println (e) } )
+		}
+		else {
+			println("Reponse \"" + rep + "\" ajoutee a la question \"" + sessR.getQuestion() + "\"")
+			flash.messageInfo = "Reponse ajoutee"
+		}
+		redirect(controller: "sessionReponse", action: "validationReponses", id: id)
+	}
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)

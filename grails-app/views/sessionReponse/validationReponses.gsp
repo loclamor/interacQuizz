@@ -56,6 +56,29 @@
 						</tr>
 					</g:each>
 				</table>
+				<g:if test="${ sessionReponseInstance.getPhase() == "ajoutReponses" }">
+					<hr>
+					<g:form controller="reponse" action="ajoutProfesseur" id="${ sessionReponseInstance.getId() }" class="span12" >
+						<div class="input-append row-fluid">
+							<g:textField name="nouvelleReponse" class="span10" placeholder="Nouvelle reponse..." required="" />
+							<button type="submit" name="submit_nouvelleReponse" class="btn btn-primary" >Ajouter</button>
+						</div>
+					</g:form>
+				</g:if>
+				<div class="span11">
+					<g:if test="${flash.messageErreur}">
+						<div class="alert alert-error" role="status">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							${flash.messageErreur}
+						</div>
+					</g:if>
+					<g:if test="${flash.messageInfo}">
+						<div class="alert alert-info" role="status">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							${flash.messageInfo}
+						</div>
+					</g:if>
+				</div>
 			</fieldset>
 		</div>
 		<div id="modalEdit" class="modal hide fade" tabindex="-1" role="dialog"
