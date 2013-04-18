@@ -126,11 +126,12 @@ class SessionReponseController {
 		
 		if (!sessionReponseInstance.save(flush: true)) {
 			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
-			flash.erreur = "erreur d'enregistrement"
+			flash.messageErreur = "erreur d'enregistrement"
 			flash.id = id
 			redirect(uri: "/")
 			return
 		}
+		[sessionReponseInstance: sessionReponseInstance]
 	}
 
     def index() {
