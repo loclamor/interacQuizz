@@ -11,6 +11,14 @@ class ReponseController {
     }
 		
 	def setValide(Long id) {
+		if( !session.prof ) {
+			flash.erreur = "Vous n'estes pas connect&eacute;"
+			flash.id = id
+			render(contentType: "text/json") {
+				flash
+			}
+			return
+		}
 		def reponseInstance = Reponse.get(id)
         if (!reponseInstance) {
 			reponseInstance.errors.allErrors.each( {e -> println (e) } )
@@ -40,6 +48,14 @@ class ReponseController {
 	}
 	
 	def setMauvaise(Long id) {
+		if( !session.prof ) {
+			flash.erreur = "Vous n'estes pas connect&eacute;"
+			flash.id = id
+			render(contentType: "text/json") {
+				flash
+			}
+			return
+		}
 		def reponseInstance = Reponse.get(id)
 		if (!reponseInstance) {
 			reponseInstance.errors.allErrors.each( {e -> println (e) } )
@@ -86,6 +102,14 @@ class ReponseController {
 	}
 	
 	def setCommentaire(Long id) {
+		if( !session.prof ) {
+			flash.erreur = "Vous n'estes pas connect&eacute;"
+			flash.id = id
+			render(contentType: "text/json") {
+				flash
+			}
+			return
+		}
 		def reponseInstance = Reponse.get(id)
 		if (!reponseInstance) {
 			reponseInstance.errors.allErrors.each( {e -> println (e) } )
@@ -146,6 +170,10 @@ class ReponseController {
 	}
 	
 	def ajoutProfesseur(Long id){
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
 		def sessR = SessionReponse.get(id)
 		if(!sessR) {
 			println("!!!! session " + id + " non trouvee")

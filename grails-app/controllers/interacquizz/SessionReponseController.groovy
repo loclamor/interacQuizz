@@ -96,6 +96,10 @@ class SessionReponseController {
 	}
 	
 	def validationReponses(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
 		def sessionReponseInstance = SessionReponse.get(id)
 		if( !sessionReponseInstance) {
 			flash.messageErreur = "Session inconnue"
@@ -105,6 +109,10 @@ class SessionReponseController {
 	}
 	
 	def cloturerReponses(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
 		def sessionReponseInstance = SessionReponse.get(id)
 		if( !sessionReponseInstance) {
 			flash.messageErreur = "Session inconnue"
@@ -126,6 +134,10 @@ class SessionReponseController {
 	}
 	
 	def retourAjout(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
 		def sessionReponseInstance = SessionReponse.get(id)
 		if( !sessionReponseInstance) {
 			flash.messageErreur = "Session inconnue"
@@ -146,6 +158,10 @@ class SessionReponseController {
 		redirect(action: "validationReponses", params: params)
 	}
 	def lancerVote(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
 		def sessionReponseInstance = SessionReponse.get(id)
 		if( !sessionReponseInstance) {
 			flash.messageErreur = "Session inconnue"
