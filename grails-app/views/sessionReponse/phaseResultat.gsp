@@ -27,9 +27,19 @@
 					${flash.messageInfo}
 				</div>
 			</g:if>
-
-			<g:chart votes="${ votes }" />
-
+			
+			<g:if test="${ flash.voteEnCours }" >
+				<div class="alert alert-info" role="status">
+					<g:link controller="sessionReponse" action="phaseResultat" id="${ sessionReponseInstance.getId() }" class="btn pull-right">
+						<i class="icon-refresh" ></i>
+					</g:link>
+					<h4>Le vote est en cours </h4>
+					Merci de patienter...
+				</div>
+			</g:if>
+			<g:else>
+				<g:chart votes="${ votes }" />
+			</g:else>
 		</fieldset>
 	</div>
      

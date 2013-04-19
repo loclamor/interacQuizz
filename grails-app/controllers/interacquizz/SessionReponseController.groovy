@@ -118,6 +118,7 @@ class SessionReponseController {
 			return
 		}
 		
+		flash.messageInfo = "Vote enregistr&eacute;"
 		session.aVote = reponseInstance
 		redirect( action: "phaseResultat", id: reponseInstance.sessionRep.getId() )
 	}
@@ -130,19 +131,25 @@ class SessionReponseController {
 			redirect(uri: "/")
 		}
 		
-		def reponses = Reponse.findAllBySessionRep(sessionReponseInstance)
-		def votesMap = [:]
-		
-		for (Reponse rep : reponses) {
-			def votes = Vote.countByReponse( rep )
-			votesMap[rep.getId()] = votes
+		if ( sessionReponseInstance.getPhase() != "resultat") {
+			flash.voteEnCours = true
+			[sessionReponseInstance: sessionReponseInstance]
 		}
-		
-		println(votesMap)
-		
-		[sessionReponseInstance: sessionReponseInstance,
-			reponsesInstance: reponses,
-			votes: votesMap]
+		else {
+			def reponses = Reponse.findAllBySessionRep(sessionReponseInstance)
+			def votesMap = [:]
+			
+			for (Reponse rep : reponses) {
+				def votes = Vote.countByReponse( rep )
+				votesMap[rep.getId()] = votes
+			}
+			
+			println(votesMap)
+			
+			[sessionReponseInstance: sessionReponseInstance,
+				reponsesInstance: reponses,
+				votes: votesMap]
+		}
 	}
 	
 	def validationReponses(Long id) {
