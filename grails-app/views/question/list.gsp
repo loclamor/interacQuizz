@@ -34,6 +34,8 @@
 							title="${message(code: 'question.commentaire.label', default: 'Commentaire')}" />
 
 						<th>Nombre de sessions</th>
+						
+						<th>Actions</th>
 
 					</tr>
 				</thead>
@@ -51,6 +53,12 @@
 
 							<td>
 								${ questionInstance.sessions.size() }
+							</td>
+							
+							<td>
+								<g:link action="edit" id="${ questionInstance.getId() }" class="btn">
+									<i class="icon-pencil"></i>
+								</g:link>
 							</td>
 						</tr>
 					</g:each>
