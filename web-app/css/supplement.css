@@ -8,3 +8,78 @@
 	background-color: #00B900;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(34, 236, 34, 0.8);
 }
+
+.chart {
+	
+}
+
+.chart .plot {
+	
+	position: relative;
+	margin-left: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	
+	text-align: center;
+	font-weight: bold;
+	white-space: nowrap;
+	
+	border-top: 1px solid #DDDDDD;
+}
+
+.chart .plot:nth-child(2n+1) {
+	background-color: #F9F9F9;
+	
+}
+
+.chart .plot.plot-error {
+	color: #B94A48;
+}
+.chart .plot.plot-success {
+	color: #468847;
+}
+
+.chart .plot .bar {
+	
+	position: absolute;
+	top:0px;
+	bottom: 0px;
+	left: 0px;
+	padding-top: 5px;
+	z-index: 50;
+	border-radius: 0px 3px 3px 0px;
+}
+
+.chart .plot.plot-error .bar {
+	background-color: #F2DEDE;
+	border-color: #EED3D7;
+}
+.chart .plot.plot-success .bar {
+	background-color: #DFF0D8;
+	border-color: #D6E9C6;
+}
+
+.chart .plot .label-plot {
+	position: absolute;
+	top:0px;
+	bottom: 0px;
+	right: 0px;
+	z-index: 100;
+	
+	padding-top: 5px;
+	font-size: 15px;
+	
+
+}
+
+.chart .plot:HOVER {
+	cursor: pointer;
+}
+
+.chart .plot:HOVER.plot-error {
+	text-shadow: 0 1px 1px rgba(185, 74, 72, 0.8);
+}
+
+.chart .plot:HOVER.plot-success {
+	text-shadow: 0 1px 1px rgba(70, 136, 71, 0.8);
+}

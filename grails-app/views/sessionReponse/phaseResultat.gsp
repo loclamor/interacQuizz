@@ -28,7 +28,7 @@
 				</div>
 			</g:if>
 
-			<g:chart votes="${ votes }"></g:chart>
+			<g:chart votes="${ votes }" />
 
 		</fieldset>
 	</div>
