@@ -24,7 +24,7 @@ class ChartTagLib {
 			
 			def reponse = Reponse.get( vote.key )
 			
-			out << plot( [percent: percent, nbre: vote.value, valide: reponse.getValide(), idReponse: vote.key], reponse.toString() )
+			out << plot( [percent: percent, nbre: vote.value, valide: reponse.getValide(), idReponse: vote.key, commentaire: reponse.getCommentaire() ], reponse.toString() )
 			plot
 		}
 		out << "</div>"
@@ -37,7 +37,7 @@ class ChartTagLib {
 		}
 		out << "<div class=\"accordion-group\" >"
 			out << "<div class=\"accordion-heading\" >"
-				out << "<a class=\"plot plot-" << statutClass << " accordion-toggle\" href=\"#commentaire-" << attrs.idReponse << "\" data-parent=\"#chart-accordion\" >"
+				out << "<a class=\"plot plot-" << statutClass << " accordion-toggle\" href=\"#commentaire-" << attrs.idReponse << "\" data-parent=\"#chart-accordion\" data-toggle=\"collapse\">"
 					out << "<div class=\"bar\" style=\"width: " << attrs.percent << "%\">"
 						out << attrs.nbre << " - " << attrs.percent.toInteger() << "%"
 					out << "</div>"
@@ -46,7 +46,7 @@ class ChartTagLib {
 			out << "</div>"
 			out << "<div class=\"accordion-body collapse\" id=\"commentaire-" << attrs.idReponse << "\" >"
 				out << "<div class=\"accordion-inner\" >"
-					out << "commentaire"
+					out << attrs.commentaire
 				out << "</div>"
 			out << "</div>"
 		out << "</div>"
