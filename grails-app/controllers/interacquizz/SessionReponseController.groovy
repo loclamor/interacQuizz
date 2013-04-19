@@ -176,7 +176,7 @@ class SessionReponseController {
 			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
 			flash.messageErreur = "erreur d'enregistrement"
 			flash.id = id
-			redirect(uri: "/")
+			redirect( action: "validationReponses", id: id )
 			return
 		}
 		
@@ -201,7 +201,7 @@ class SessionReponseController {
 			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
 			flash.messageErreur = "erreur d'enregistrement"
 			flash.id = id
-			redirect(uri: "/")
+			redirect( action: "validationReponses", id: id )
 			return
 		}
 		
@@ -225,7 +225,7 @@ class SessionReponseController {
 			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
 			flash.messageErreur = "erreur d'enregistrement"
 			flash.id = id
-			redirect(uri: "/")
+			redirect( action: "validationReponses", id: id )
 			return
 		}
 		[sessionReponseInstance: sessionReponseInstance]
@@ -249,7 +249,7 @@ class SessionReponseController {
 			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
 			flash.messageErreur = "erreur d'enregistrement"
 			flash.id = id
-			redirect(uri: "/")
+			redirect( action: "lancerVote", id: id )
 			return
 		}
 		
