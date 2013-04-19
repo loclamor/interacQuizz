@@ -230,6 +230,31 @@ class SessionReponseController {
 		}
 		[sessionReponseInstance: sessionReponseInstance]
 	}
+	
+	def cloturerVote(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
+		def sessionReponseInstance = SessionReponse.get(id)
+		if( !sessionReponseInstance) {
+			flash.messageErreur = "Session inconnue"
+			redirect(uri: "/")
+			return
+		}
+	
+		sessionReponseInstance.setPhase("resultat")
+		
+		if (!sessionReponseInstance.save(flush: true)) {
+			sessionReponseInstance.errors.allErrors.each( {e -> println (e) } )
+			flash.messageErreur = "erreur d'enregistrement"
+			flash.id = id
+			redirect(uri: "/")
+			return
+		}
+		
+		redirect( action: "phaseResultat", id: id )
+	}
 
     def index() {
         redirect(action: "list", params: params)
