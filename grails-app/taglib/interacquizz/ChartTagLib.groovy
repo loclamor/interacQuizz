@@ -39,7 +39,7 @@ class ChartTagLib {
 			out << "<div class=\"accordion-heading\" >"
 				out << "<a class=\"plot plot-" << statutClass << " accordion-toggle\" href=\"#commentaire-" << attrs.idReponse << "\" data-parent=\"#chart-accordion\" data-toggle=\"collapse\">"
 					out << "<div class=\"bar\" style=\"width: " << attrs.percent << "%\">"
-						out << attrs.nbre << " - " << attrs.percent.toInteger() << "%"
+						out << "&nbsp;" << attrs.nbre << " - " << attrs.percent.toInteger() << "%"
 					out << "</div>"
 					out << "<span class=\"label-plot\" >" << body() << "</span>"
 				out << "</a>"

@@ -1,3 +1,8 @@
+body {
+	min-width: 1000px;
+	max-width: 1600px;
+	margin: auto;
+}
 
 .btn-danger.active {
 	background-color: #DF0000;
@@ -65,7 +70,7 @@
 	position: absolute;
 	top:0px;
 	bottom: 0px;
-	right: 0px;
+	right: 5px;
 	z-index: 100;
 	
 	padding-top: 5px;

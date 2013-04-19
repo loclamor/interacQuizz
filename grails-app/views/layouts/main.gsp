@@ -16,9 +16,9 @@
 <link rel="stylesheet"
 	href="${resource(dir: 'bootstrap/css', file: 'bootstrap.css')}"
 	type="text/css">
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="${resource(dir: 'bootstrap/css', file: 'bootstrap-responsive.css')}"
-	type="text/css">
+	type="text/css"> -->
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'supplement.css')}" type="text/css">
 <script type="text/javascript"
