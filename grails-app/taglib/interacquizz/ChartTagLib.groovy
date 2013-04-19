@@ -16,30 +16,39 @@ class ChartTagLib {
 		}
 		println( nbVotes + " votes sur " + nbRep + " reponses")
 		
-		out << "<div class=\"row-fluid chart\"><div class=\"span12\"></div>"
+		out << "<div class=\"accordion chart\" id=\"chart-accordion\" >" //<div class=\"span12\"></div>
 		itVotes = votes.iterator()
 		while( itVotes.hasNext() ) {
 			def vote = itVotes.next()
 			def percent = vote.value * 100 / nbVotes
-			/*if( percent == 0 ) {
-				percent = 1
-			}*/
 			
 			def reponse = Reponse.get( vote.key )
 			
-			out << plot( [percent: percent, nbre: vote.value, valide: reponse.getValide()], reponse.toString() )
+			out << plot( [percent: percent, nbre: vote.value, valide: reponse.getValide(), idReponse: vote.key], reponse.toString() )
 			plot
 		}
 		out << "</div>"
-		
+
 	}
 	def plot = { attrs, body ->
 		def statutClass = "error"
 		if( attrs.valide ){
 			statutClass = "success"
 		}
-		out << "<div class=\"span12 plot plot-" << statutClass << "\" ><div class=\"bar\" style=\"width: "
-		out << attrs.percent << "%\">" << attrs.nbre << " - " << attrs.percent.toInteger() << "%</div><span class=\"label-plot\" >"
-		out << body() << "</span></div>"
+		out << "<div class=\"accordion-group\" >"
+			out << "<div class=\"accordion-heading\" >"
+				out << "<a class=\"plot plot-" << statutClass << " accordion-toggle\" href=\"#commentaire-" << attrs.idReponse << "\" data-parent=\"#chart-accordion\" >"
+					out << "<div class=\"bar\" style=\"width: " << attrs.percent << "%\">"
+						out << attrs.nbre << " - " << attrs.percent.toInteger() << "%"
+					out << "</div>"
+					out << "<span class=\"label-plot\" >" << body() << "</span>"
+				out << "</a>"
+			out << "</div>"
+			out << "<div class=\"accordion-body collapse\" id=\"commentaire-" << attrs.idReponse << "\" >"
+				out << "<div class=\"accordion-inner\" >"
+					out << "commentaire"
+				out << "</div>"
+			out << "</div>"
+		out << "</div>"
 	}
 }
