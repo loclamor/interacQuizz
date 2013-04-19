@@ -53,7 +53,7 @@ class ProfesseurController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'professeur.label', default: 'Professeur'), professeurInstance.id])
-        redirect(action: "show", id: professeurInstance.id)
+        redirect( controller: "question", action: "list", id: professeurInstance.id)
     }
 
     def show(Long id) {
