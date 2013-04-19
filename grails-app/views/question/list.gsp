@@ -12,9 +12,15 @@
 <body>
 	<div id="list-question" class="well span8 offset2" role="main">
 		<fieldset>
-			<legend>Liste de vos questions <g:link action="create" class="btn pull-right"><i class="icon-plus"></i></g:link></legend>
+			<legend>
+				Liste de vos questions
+				<g:link action="create" class="btn pull-right">
+					<i class="icon-plus"></i>
+				</g:link>
+			</legend>
 			<g:if test="${flash.message}">
-				<div class="message" role="status">
+				<div class="alert alert-info" role="status">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
 					${flash.message}
 				</div>
 			</g:if>

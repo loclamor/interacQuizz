@@ -27,7 +27,7 @@
 		
 	</label>
 	<div class="controls">
-		<g:textField name="nom"  class="span10"value="${professeurInstance?.nom}" required=""/>
+		<g:textField name="nom"  class="span10" value="${professeurInstance?.nom}" required=""/>
 		</div>
 </div>
 

@@ -27,10 +27,12 @@
 					</ul>
 				</g:hasErrors>
 				<g:render template="form" />
-			</fieldset>
-			<fieldset class="buttons">
-				<g:submitButton name="create" class="btn btn-large offset6 span4"
-					value="${message(code: 'default.button.create.label', default: 'Create')}" />
+				<div class="control-group">
+					<div class="controls">
+						<g:submitButton name="create" class="btn btn-large offset6 span4"
+							value="S'inscrire" />
+					</div>
+				</div>
 			</fieldset>
 		</g:form>
 	</div>
