@@ -11,11 +11,19 @@ class QuestionController {
     }
 
     def list(Integer max) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         params.max = Math.min(max ?: 10, 100)
         [questionInstanceList: Question.list(params), questionInstanceTotal: Question.count()]
     }
 
     def create() {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         [questionInstance: new Question(params)]
     }
 
@@ -42,6 +50,10 @@ class QuestionController {
     }
 
     def edit(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def questionInstance = Question.get(id)
         if (!questionInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])

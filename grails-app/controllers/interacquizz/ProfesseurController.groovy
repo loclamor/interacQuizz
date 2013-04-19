@@ -7,7 +7,7 @@ class ProfesseurController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
-        redirect(action: "list", params: params)
+        redirect(controller: "question", action: "list")
     }
 
 	def connect() {
@@ -35,13 +35,12 @@ class ProfesseurController {
 		flash.messageInfo = "D&eacute;connexion r&eacute;ussie"
 		redirect(uri: "/")
 	}
-	
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [professeurInstanceList: Professeur.list(params), professeurInstanceTotal: Professeur.count()]
-    }
 
     def create() {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         [professeurInstance: new Professeur(params)]
     }
 
@@ -56,22 +55,11 @@ class ProfesseurController {
         redirect( controller: "question", action: "list", id: professeurInstance.id)
     }
 
-    def show(Long id) {
-        def professeurInstance = Professeur.get(id)
-        if (!professeurInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'professeur.label', default: 'Professeur'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [professeurInstance: professeurInstance]
-    }
-
     def edit(Long id) {
         def professeurInstance = Professeur.get(id)
         if (!professeurInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'professeur.label', default: 'Professeur'), id])
-            redirect(action: "list")
+            redirect( controller: "question", action: "list")
             return
         }
 
@@ -82,7 +70,7 @@ class ProfesseurController {
         def professeurInstance = Professeur.get(id)
         if (!professeurInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'professeur.label', default: 'Professeur'), id])
-            redirect(action: "list")
+            redirect( controller: "question", action: "list")
             return
         }
 
@@ -104,25 +92,25 @@ class ProfesseurController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'professeur.label', default: 'Professeur'), professeurInstance.id])
-        redirect(action: "show", id: professeurInstance.id)
+        redirect( controller: "question", action: "list", id: professeurInstance.id)
     }
 
     def delete(Long id) {
         def professeurInstance = Professeur.get(id)
         if (!professeurInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'professeur.label', default: 'Professeur'), id])
-            redirect(action: "list")
+            redirect( controller: "question", action: "list")
             return
         }
 
         try {
             professeurInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'professeur.label', default: 'Professeur'), id])
-            redirect(action: "list")
+            redirect( controller: "question", action: "list")
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'professeur.label', default: 'Professeur'), id])
-            redirect(action: "show", id: id)
+			redirect( controller: "question", action: "list", id: professeurInstance.id)
         }
     }
 }

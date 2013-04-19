@@ -34,7 +34,7 @@
 							title="${message(code: 'question.commentaire.label', default: 'Commentaire')}" />
 
 						<th>Nombre de sessions</th>
-						
+
 						<th>Actions</th>
 
 					</tr>
@@ -43,23 +43,22 @@
 					<g:each in="${questionInstanceList}" status="i"
 						var="questionInstance">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-							<td>
-								${fieldValue(bean: questionInstance, field: "intitule")}
-							</td>
-
 							<td><g:link action="show" id="${questionInstance.id}">
-									${fieldValue(bean: questionInstance, field: "commentaire")}
+									${fieldValue(bean: questionInstance, field: "intitule")}
 								</g:link></td>
+
+							<td>
+								${fieldValue(bean: questionInstance, field: "commentaire")}
+							</td>
 
 							<td>
 								${ questionInstance.sessions.size() }
 							</td>
-							
-							<td>
-								<g:link action="edit" id="${ questionInstance.getId() }" class="btn">
+
+							<td><g:link action="edit" id="${ questionInstance.getId() }"
+									class="btn">
 									<i class="icon-pencil"></i>
-								</g:link>
-							</td>
+								</g:link></td>
 						</tr>
 					</g:each>
 				</tbody>
