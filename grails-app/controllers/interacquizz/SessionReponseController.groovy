@@ -285,7 +285,7 @@ class SessionReponseController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), sessionReponseInstance.id])
-        redirect(action: "show", id: sessionReponseInstance.id)
+        redirect(action: "list", id: sessionReponseInstance.id)
     }
 
     def show(Long id) {
@@ -336,7 +336,7 @@ class SessionReponseController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), sessionReponseInstance.id])
-        redirect(action: "show", id: sessionReponseInstance.id)
+        redirect(action: "list", id: sessionReponseInstance.id)
     }
 
     def delete(Long id) {
