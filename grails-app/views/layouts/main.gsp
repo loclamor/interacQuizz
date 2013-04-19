@@ -39,9 +39,21 @@
 			</ul>
 			<g:if test="${ session.prof }">
 				<ul class="nav pull-right">
-					<li><g:link controller="professeur" action="edit" id="${ session.prof.getId() }" >Connecté en tant que ${ session.prof }</g:link></li>
-					<li><g:link controller="professeur" action="create" ><i class="icon-plus" ></i> Créer un professeur</g:link></li>
-					<li><g:link controller="professeur" action="deconnexion" class=""><i class="icon-off"></i> Se déconnecter</g:link></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Connecté en tant que ${ session.prof }
+						<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><g:link controller="question" action="list" ><i class="icon-list"></i> Mes questions</g:link></li>
+							<li class="divider"></li>
+							<li><g:link controller="professeur" action="edit" id="${ session.prof.getId() }" ><i class="icon-pencil"></i> Editer mon profil</g:link></li>
+							<li class="divider"></li>
+							<li><g:link controller="professeur" action="create" ><i class="icon-plus" ></i> Créer un professeur</g:link></li>
+							<li class="divider"></li>
+							<li><g:link controller="professeur" action="deconnexion" class=""><i class="icon-off"></i> Se déconnecter</g:link></li>
+						</ul>
+					</li>
 				</ul>
 			</g:if>
 		</div>
