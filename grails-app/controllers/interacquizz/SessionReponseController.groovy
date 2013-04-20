@@ -302,14 +302,33 @@ class SessionReponseController {
     }
 
     def show(Long id) {
-        def sessionReponseInstance = SessionReponse.get(id)
-        if (!sessionReponseInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), id])
+        def sessR = SessionReponse.get(id)
+        if (!sessR) {
+            flash.message = "session inconnue"
             redirect(action: "list")
             return
         }
 
-        [sessionReponseInstance: sessionReponseInstance]
+		switch (sessR.getPhase()) {
+			case "ajoutReponses":
+				redirect(action: "validationReponses", id: sessR.id)
+				break;
+			case "validation":
+				redirect(action: "validationReponses", id: sessR.id)
+				break;
+			case "vote":
+				redirect(action: "lancerVote", id: sessR.id)
+				break;
+			case "resultat":
+				redirect(action: "phaseResultat", id: sessR.id)
+				break;
+	
+			default:
+				flash.message = "phase de question inconnue"
+				redirect(action: "list")
+				break;
+		}
+		
     }
 
     def edit(Long id) {

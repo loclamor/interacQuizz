@@ -24,8 +24,6 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th><g:message code="sessionReponse.question.label"
-							default="Question" /></th>
 
 					<g:sortableColumn property="phase"
 						title="${message(code: 'sessionReponse.phase.label', default: 'Phase')}" />
@@ -45,11 +43,9 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
 						<td>
-							${fieldValue(bean: sessionReponseInstance, field: "question")}
-						</td>
-
-						<td>
-							${fieldValue(bean: sessionReponseInstance, field: "phase")}
+							<g:link controller="sessionReponse" action="show" id="${ sessionReponseInstance.id }" >
+								${fieldValue(bean: sessionReponseInstance, field: "phase")}
+							</g:link>
 						</td>
 
 						<td>
