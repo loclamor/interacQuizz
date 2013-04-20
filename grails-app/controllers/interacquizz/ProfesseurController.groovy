@@ -45,6 +45,10 @@ class ProfesseurController {
     }
 
     def save() {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def professeurInstance = new Professeur(params)
         if (!professeurInstance.save(flush: true)) {
             render(view: "create", model: [professeurInstance: professeurInstance])
@@ -56,6 +60,10 @@ class ProfesseurController {
     }
 
     def edit(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def professeurInstance = Professeur.get(id)
         if (!professeurInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'professeur.label', default: 'Professeur'), id])
@@ -67,6 +75,10 @@ class ProfesseurController {
     }
 
     def update(Long id, Long version) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def professeurInstance = Professeur.get(id)
         if (!professeurInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'professeur.label', default: 'Professeur'), id])
@@ -96,6 +108,10 @@ class ProfesseurController {
     }
 
     def delete(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def professeurInstance = Professeur.get(id)
         if (!professeurInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'professeur.label', default: 'Professeur'), id])
