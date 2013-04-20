@@ -304,4 +304,26 @@
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>30;30;30;70;170;70;170;30</additional_attributes>
   </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>140</x>
+      <y>270</y>
+      <w>90</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30;30;70;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.State</type>
+    <coordinates>
+      <x>30</x>
+      <y>280</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>suppression session</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>

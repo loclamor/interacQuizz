@@ -202,15 +202,6 @@ class ReponseController {
 		redirect(controller: "sessionReponse", action: "validationReponses", id: id)
 	}
 
-    def list(Integer max) {
-		if( !session.prof ) {
-			redirect(controller: "professeur", action: "connect")
-			return
-		}
-        params.max = Math.min(max ?: 10, 100)
-        [reponseInstanceList: Reponse.list(params), reponseInstanceTotal: Reponse.count()]
-    }
-
     def create() {
 		if( !session.prof ) {
 			redirect(controller: "professeur", action: "connect")
@@ -232,21 +223,6 @@ class ReponseController {
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'reponse.label', default: 'Reponse'), reponseInstance.id])
         redirect(controller: "sessionReponse", action: "edit", id: reponseInstance.getSessionRep().getId() )
-    }
-
-    def show(Long id) {
-		if( !session.prof ) {
-			redirect(controller: "professeur", action: "connect")
-			return
-		}
-        def reponseInstance = Reponse.get(id)
-        if (!reponseInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [reponseInstance: reponseInstance]
     }
 
     def edit(Long id) {
@@ -306,18 +282,18 @@ class ReponseController {
 		def sessId = reponseInstance.getSessionRep().getId()
         if (!reponseInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
-            redirect(action: "list")
+            redirect(controller: "sessionReponse", action: "list")
             return
         }
 
         try {
-            reponseInstance.delete(flush: true)
+			reponseInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
             redirect(controller: "sessionReponse", action: "edit", id: sessId )
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
-            redirect(action: "list", id: id)
+            redirect(controller: "sessionReponse", action: "list", id: id)
         }
     }
 }

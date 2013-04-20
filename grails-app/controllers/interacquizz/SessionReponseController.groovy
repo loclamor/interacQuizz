@@ -406,6 +406,10 @@ class SessionReponseController {
         }
 
         try {
+			def reponses = Reponse.findAllBySessionRep(sessionReponseInstance)
+			for (Reponse rep : reponses) {
+				rep.delete(flush: true)
+			}
             sessionReponseInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), id])
             redirect(action: "list")
