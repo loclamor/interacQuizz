@@ -219,7 +219,7 @@ class ReponseController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'reponse.label', default: 'Reponse'), reponseInstance.id])
-        redirect(action: "show", id: reponseInstance.id)
+        redirect(controller: "sessionReponse", action: "edit", id: reponseInstance.getSessionRep().getId() )
     }
 
     def show(Long id) {
@@ -270,11 +270,12 @@ class ReponseController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'reponse.label', default: 'Reponse'), reponseInstance.id])
-        redirect(action: "show", id: reponseInstance.id)
+        redirect(controller: "sessionReponse", action: "edit", id: reponseInstance.getSessionRep().getId() )
     }
 
     def delete(Long id) {
         def reponseInstance = Reponse.get(id)
+		def sessId = reponseInstance.getSessionRep().getId()
         if (!reponseInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
             redirect(action: "list")
@@ -284,7 +285,7 @@ class ReponseController {
         try {
             reponseInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
-            redirect(action: "list")
+            redirect(controller: "sessionReponse", action: "edit", id: sessId )
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
