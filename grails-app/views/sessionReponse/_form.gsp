@@ -1,4 +1,5 @@
 <%@ page import="interacquizz.SessionReponse"%>
+<%@ page import="interacquizz.Reponse"%>
 
 
 
@@ -37,14 +38,19 @@
 				code="sessionReponse.reponses.label" default="Reponses" />
 		</label>
 		<div class="controls">
-			<ul class="one-to-many">
-				<g:each in="${sessionReponseInstance?.reponses?}" var="r">
-					<li><g:link controller="reponse" action="show" id="${r.id}">
-							${r?.encodeAsHTML()}
-						</g:link></li>
+			<table class="table table-striped">
+				<g:each in="${ Reponse.findAllBySessionRep(sessionReponseInstance) }" var="r">
+					<tr class="${ r.getValide()?"success":"" }">
+						<td>${r?.encodeAsHTML()}</td>
+						<td>
+							<g:link controller="reponse" action="edit" id="${r.id}">
+								<i class="icon-pencil"></i>
+							</g:link>
+						</td>
+					</tr>
 				</g:each>
 
-			</ul>
+			</table>
 
 
 			<g:link controller="reponse" action="create" class="btn"
