@@ -31,7 +31,7 @@
 
 
 <g:hiddenField name="question.id" value="${ (question)?(question?.id):(sessionReponseInstance?.question?.id) }"/>
-<g:if test="${ sessionReponseInstance.getQuestion() }">
+<g:if test="${ sessionReponseInstance?.getQuestion() }">
 	<div
 		class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'reponses', 'error')} control-group ">
 		<label for="reponses" class="control-label"> <g:message

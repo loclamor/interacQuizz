@@ -9,5 +9,6 @@ class SessionReponse {
 	
     static constraints = {
 		phase inList: ["ajoutReponses", "validation", "vote", "resultat"]
+		cleeAcces unique: true
     }
 }

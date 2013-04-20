@@ -301,7 +301,9 @@ class SessionReponseController {
 		}
         def sessionReponseInstance = new SessionReponse(params)
         if (!sessionReponseInstance.save(flush: true)) {
-            render(view: "create", model: [sessionReponseInstance: sessionReponseInstance])
+			flash.message = "une erreur est survenue. La clee d'acces doit etre unique"
+			redirect(action: "create", id: sessionReponseInstance.question.id)
+            //render(view: "create", model: [sessionReponseInstance: sessionReponseInstance])
             return
         }
 
