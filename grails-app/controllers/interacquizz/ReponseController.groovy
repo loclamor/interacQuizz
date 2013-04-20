@@ -203,15 +203,27 @@ class ReponseController {
 	}
 
     def list(Integer max) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         params.max = Math.min(max ?: 10, 100)
         [reponseInstanceList: Reponse.list(params), reponseInstanceTotal: Reponse.count()]
     }
 
     def create() {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         [reponseInstance: new Reponse(params)]
     }
 
     def save() {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def reponseInstance = new Reponse(params)
         if (!reponseInstance.save(flush: true)) {
             render(view: "create", model: [reponseInstance: reponseInstance])
@@ -223,6 +235,10 @@ class ReponseController {
     }
 
     def show(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def reponseInstance = Reponse.get(id)
         if (!reponseInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
@@ -234,6 +250,10 @@ class ReponseController {
     }
 
     def edit(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def reponseInstance = Reponse.get(id)
         if (!reponseInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
@@ -245,6 +265,10 @@ class ReponseController {
     }
 
     def update(Long id, Long version) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def reponseInstance = Reponse.get(id)
         if (!reponseInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
@@ -274,6 +298,10 @@ class ReponseController {
     }
 
     def delete(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def reponseInstance = Reponse.get(id)
 		def sessId = reponseInstance.getSessionRep().getId()
         if (!reponseInstance) {
