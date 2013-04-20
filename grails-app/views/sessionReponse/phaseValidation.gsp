@@ -20,7 +20,7 @@
 				</legend>
 				<div class="alert alert-info">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h4>Votre professeur est entrain de valider vos réponses.</h4>
+					<h4>Votre professeur est en train de valider vos réponses.</h4>
 					Attendez son signal pour passer à la phase de vote.
 				</div>
 				
