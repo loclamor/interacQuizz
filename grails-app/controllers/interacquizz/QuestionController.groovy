@@ -118,12 +118,14 @@ class QuestionController {
         }
 
         try {
-			def sessionReponseInstance = SessionReponse.get(id)
-			def reponses = Reponse.findAllBySessionRep(sessionReponseInstance)
-			for (Reponse rep : reponses) {
-				rep.delete(flush: true)
+			def sessionRep = SessionReponse.findAllByQuestion(questionInstance)
+			for (SessionReponse sess : sessionRep) {
+				def reponses = Reponse.findAllBySessionRep(sess)
+				for (Reponse rep : reponses) {
+					rep.delete(flush: true)
+				}
+				sess.delete(flush: true)
 			}
-			sessionReponseInstance.delete(flush: true)
             questionInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'question.label', default: 'Question'), id])
             redirect(action: "list")
