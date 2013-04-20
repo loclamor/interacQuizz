@@ -21,10 +21,12 @@
 				</div>
 			</g:if>
 			<br>
-			<span>
-				Ou connectez vous avec votre 
-				<g:link controller="professeur" action="connect">compte professeur</g:link>
-			</span>
+			<g:if test="${!session.prof}">
+				<span>
+					Ou connectez vous avec votre 
+					<g:link controller="professeur" action="connect">compte professeur</g:link>
+				</span>
+			</g:if>
 		</fieldset>
 	</g:form>
 </body>
