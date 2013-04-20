@@ -28,6 +28,10 @@ class QuestionController {
     }
 
     def save() {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def questionInstance = new Question(params)
         if (!questionInstance.save(flush: true)) {
             render(view: "create", model: [questionInstance: questionInstance])
@@ -39,6 +43,10 @@ class QuestionController {
     }
 
     def show(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def questionInstance = Question.get(id)
         if (!questionInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])
@@ -65,6 +73,10 @@ class QuestionController {
     }
 
     def update(Long id, Long version) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def questionInstance = Question.get(id)
         if (!questionInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])
@@ -94,6 +106,10 @@ class QuestionController {
     }
 
     def delete(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def questionInstance = Question.get(id)
         if (!questionInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])
