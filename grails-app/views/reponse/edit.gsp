@@ -16,7 +16,7 @@
 					: Editer une reponse
 				</legend>
 				<g:if test="${flash.message}">
-					<div class="alert alert-error" role="status">
+					<div class="alert alert-info" role="status">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
 						${flash.message}
 					</div>

@@ -12,7 +12,7 @@
 		role="main">
 		<g:form action="save" class="well span8 offset2 form-horizontal">
 			<fieldset>
-				<legend>Ajouter une nouvelle session</legend>
+				<legend>${ question } : Ajouter une nouvelle session</legend>
 				<g:if test="${flash.message}">
 					<div class="alert alert-error" role="status">
 						${flash.message}

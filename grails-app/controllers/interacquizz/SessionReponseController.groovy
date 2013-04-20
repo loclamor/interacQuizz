@@ -267,14 +267,27 @@ class SessionReponseController {
         redirect(action: "list", params: params)
     }
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [sessionReponseInstanceList: SessionReponse.list(params),
-			sessionReponseInstanceTotal: SessionReponse.count()]
+    def list(Long id) {
+        def question = Question.get(id)
+		if(!question) {
+			flash.message = "question inconnue"
+			redirect(controller: "question", action: "list")
+			return
+		}
+		def sessionReponseInstanceList = SessionReponse.findAllByQuestion(question)
+        [sessionReponseInstanceList : sessionReponseInstanceList,
+			sessionReponseInstanceTotal: sessionReponseInstanceList.size(),
+			questionInstance: question]
     }
 
-    def create() {
-        [sessionReponseInstance: new SessionReponse(params)]
+    def create(Long id) {
+		def question = Question.get(id)
+		if(!question) {
+			flash.message = "question inconnue"
+			redirect(controller: "question", action: "list")
+			return
+		}
+        [question: question, sessionReponseInstance: new SessionReponse(params)]
     }
 
     def save() {
@@ -285,7 +298,7 @@ class SessionReponseController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), sessionReponseInstance.id])
-        redirect(action: "list", id: sessionReponseInstance.id)
+        redirect(action: "list", id: sessionReponseInstance.question.id)
     }
 
     def show(Long id) {
@@ -336,7 +349,7 @@ class SessionReponseController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), sessionReponseInstance.id])
-        redirect(action: "list", id: sessionReponseInstance.id)
+        redirect(action: "list", id: sessionReponseInstance.question.id)
     }
 
     def delete(Long id) {

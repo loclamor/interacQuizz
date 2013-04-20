@@ -10,16 +10,17 @@
 		<div id="edit-sessionReponse" class="content scaffold-edit" role="main">
 			<g:form method="post" class="well span8 offset2 form-horizontal">
 			<fieldset>
-				<legend>Editer une Session</legend>
+				<legend>${ sessionReponseInstance?.question }
+				 : Editer une Session</legend>
 				<g:if test="${flash.message}">
 					<div class="alert alert-error" role="status">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
 						${flash.message}
 					</div>
 				</g:if>
-				<g:hasErrors bean="${questionInstance}">
+				<g:hasErrors bean="${sessionReponseInstance}">
 					<ul class="errors" role="alert">
-						<g:eachError bean="${questionInstance}" var="error">
+						<g:eachError bean="${sessionReponseInstance}" var="error">
 							<li
 								<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
 									error="${error}" /></li>

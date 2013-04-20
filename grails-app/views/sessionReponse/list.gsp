@@ -10,9 +10,9 @@
 </head>
 <body>
 	<div id="list-sessionReponse" class="well span8 offset2" role="main">
-		<legend>
-			Liste de vos sessions
-			<g:link action="create" class="btn pull-right">
+		<legend>${ questionInstance }
+			 : Liste de vos sessions
+			<g:link action="create" id="${ questionInstance.id }" class="btn pull-right">
 				<i class="icon-plus"></i>
 			</g:link>
 		</legend>

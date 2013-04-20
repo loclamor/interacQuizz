@@ -19,7 +19,7 @@
 	</div>
 </div>
 
-<g:hiddenField name="session.id" value="${ (reponseInstance?.sessionRep?.id)?reponseInstance?.sessionRep?.id:params.sessionReponse?.id }"/>
+<g:hiddenField name="sessionRep.id" value="${ (reponseInstance?.sessionRep?.id)?reponseInstance?.sessionRep?.id:params.sessionReponse?.id }"/>
 
 <div class="fieldcontain ${hasErrors(bean: reponseInstance, field: 'valide', 'error')} control-group ">
 	<label for="valide" class="control-label">

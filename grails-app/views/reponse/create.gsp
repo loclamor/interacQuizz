@@ -36,7 +36,7 @@
 
 				<div class="control-group">
 					<div class="controls">
-						<g:submitButton name="create" class="save" value="Enregistrer" />
+						<g:submitButton name="create" class="btn offset7 span3 btn-large" value="Enregistrer" />
 					</div>
 				</div>
 			</fieldset>
