@@ -34,8 +34,8 @@
 				<div class="control-group">
 					<div class="controls">
 						<g:actionSubmit class="btn btn-large btn-danger offset4 span3" action="delete"
-							value="Supprimer" formnovalidate=""
-							onclick="return confirm('Vous allez supprimer une question.\nVoulez vous continuer ?');" />
+							value="Supprimer" 
+							onclick="return confirm('Supprimer la question ?');" />
 						<g:actionSubmit class="btn btn-large span3 offset1" action="update"
 							value="Enregistrer" />
 					</div>

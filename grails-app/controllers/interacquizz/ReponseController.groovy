@@ -317,7 +317,7 @@ class ReponseController {
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
-            redirect(action: "show", id: id)
+            redirect(action: "list", id: id)
         }
     }
 }

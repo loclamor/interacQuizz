@@ -124,7 +124,7 @@ class QuestionController {
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'question.label', default: 'Question'), id])
-            redirect(action: "show", id: id)
+            redirect(action: "list", id: id)
         }
     }
 }

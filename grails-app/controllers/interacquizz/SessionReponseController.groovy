@@ -412,7 +412,7 @@ class SessionReponseController {
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), id])
-            redirect(action: "show", id: id)
+            redirect(action: "list", id: id)
         }
     }
 }
