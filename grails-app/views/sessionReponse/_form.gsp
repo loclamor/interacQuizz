@@ -28,38 +28,33 @@
 	</div>
 </div>
 
-<div
-	class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'question', 'error')} required control-group ">
-	<label for="question" class="control-label"> <g:message
-			code="sessionReponse.question.label" default="Question" />
-	</label>
-	<div class="controls">
-		<g:select id="question" name="question.id" 
-			from="${interacquizz.Question.list()}" optionKey="id" required=""
-			value="${sessionReponseInstance?.question?.id}" class="many-to-one" class="span10"/>
-	</div>
-</div>
 
-<div
-	class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'reponses', 'error')} control-group ">
-	<label for="reponses" class="control-label"> <g:message
-			code="sessionReponse.reponses.label" default="Reponses" />
-	</label>
-	<div class="controls">
-		<ul class="one-to-many">
-			<g:each in="${sessionReponseInstance?.reponses?}" var="r">
-				<li><g:link controller="reponse" action="show" id="${r.id}">
-						${r?.encodeAsHTML()}
-					</g:link></li>
-			</g:each>
-			<li class="add"><g:link controller="reponse" action="create"
-					params="['sessionReponse.id': sessionReponseInstance?.id]">
-					${message(code: 'default.add.label', args: [message(code: 'reponse.label', default: 'Reponse')])}
-				</g:link></li>
-		</ul>
-	</div>
-</div>
+<g:hiddenField name="question.id" value="${sessionReponseInstance?.question?.id}"/>
+<g:if test="${ sessionReponseInstance.getVersion() }">
+	<div
+		class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'reponses', 'error')} control-group ">
+		<label for="reponses" class="control-label"> <g:message
+				code="sessionReponse.reponses.label" default="Reponses" />
+		</label>
+		<div class="controls">
+			<ul class="one-to-many">
+				<g:each in="${sessionReponseInstance?.reponses?}" var="r">
+					<li><g:link controller="reponse" action="show" id="${r.id}">
+							${r?.encodeAsHTML()}
+						</g:link></li>
+				</g:each>
 
+			</ul>
+
+
+			<g:link controller="reponse" action="create" class="btn"
+				params="['sessionReponse.id': sessionReponseInstance?.id]">
+				<i class="icon-plus"></i> Ajouter une reponse
+			</g:link>
+
+		</div>
+	</div>
+</g:if>
 <div
 	class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'visible', 'error')} control-group ">
 	<label for="visible" class="control-label"> <g:message
