@@ -268,6 +268,10 @@ class SessionReponseController {
     }
 
     def list(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def question = Question.get(id)
 		if(!question) {
 			flash.message = "question inconnue"
@@ -291,6 +295,10 @@ class SessionReponseController {
     }
 
     def save() {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def sessionReponseInstance = new SessionReponse(params)
         if (!sessionReponseInstance.save(flush: true)) {
             render(view: "create", model: [sessionReponseInstance: sessionReponseInstance])
@@ -302,6 +310,10 @@ class SessionReponseController {
     }
 
     def show(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def sessR = SessionReponse.get(id)
         if (!sessR) {
             flash.message = "session inconnue"
@@ -332,6 +344,10 @@ class SessionReponseController {
     }
 
     def edit(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def sessionReponseInstance = SessionReponse.get(id)
         if (!sessionReponseInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), id])
@@ -343,6 +359,10 @@ class SessionReponseController {
     }
 
     def update(Long id, Long version) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def sessionReponseInstance = SessionReponse.get(id)
         if (!sessionReponseInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), id])
@@ -372,6 +392,10 @@ class SessionReponseController {
     }
 
     def delete(Long id) {
+		if( !session.prof ) {
+			redirect(controller: "professeur", action: "connect")
+			return
+		}
         def sessionReponseInstance = SessionReponse.get(id)
         if (!sessionReponseInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), id])
