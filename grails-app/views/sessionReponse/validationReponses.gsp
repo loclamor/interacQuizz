@@ -27,11 +27,21 @@
 						</g:else>
 					</span>
 				</legend>
-				<div class="alert alert-info">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h4>Voici les reponses de vos etudiants.</h4>
-					Pensez à deconnecter le video projecteur avant de les valider.
-				</div>
+				<g:if test="${ !sessionReponseInstance.getVisible() }" >
+					<div class="alert">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<h4>Session invisible.</h4>
+						<g:link controller="sessionReponse" action="edit" id="${ sessionReponseInstance.getId() }" >Passez cette session à visible</g:link>
+						 pour que vos étudiants puissent y accéder
+					</div>
+				</g:if>
+				<g:else>
+					<div class="alert alert-info">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<h4>Voici les reponses de vos etudiants.</h4>
+						Pensez à deconnecter le video projecteur avant de les valider.
+					</div>
+				</g:else>
 				<table class="table table-striped">
 	
 					<g:each in="${reponsesInstance}" var="reponse">

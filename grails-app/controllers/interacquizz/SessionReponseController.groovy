@@ -16,6 +16,12 @@ class SessionReponseController {
 			return
 		}
 		
+		if( !sessR.getVisible() ){
+			flash.messageErreur = "Cette question n'est pas accessible."
+			redirect(uri: "/")
+			return
+		}
+		
 		println("connexion a la session " + sessR.id + " pour la question \"" + sessR.getQuestion() + "\"")
 		println("session en phase " + sessR.getPhase())
 		
@@ -49,6 +55,13 @@ class SessionReponseController {
 			redirect(uri: "/")
 			return
 		}
+		
+		if( !sessionReponseInstance.getVisible() ){
+			flash.messageErreur = "Cette question n'est pas accessible."
+			redirect(uri: "/")
+			return
+		}
+		
 		[sessionReponseInstance: sessionReponseInstance]
 	}
 	
@@ -59,6 +72,12 @@ class SessionReponseController {
 			redirect(uri: "/")
 		}
 		
+		if( !sessionReponseInstance.getVisible() ){
+			flash.messageErreur = "Cette question n'est pas accessible."
+			redirect(uri: "/")
+			return
+		}
+		
 		[sessionReponseInstance: sessionReponseInstance]
 	}
 	
@@ -67,6 +86,12 @@ class SessionReponseController {
 		if( !sessionReponseInstance) {
 			flash.messageErreur = "Session inconnue"
 			redirect(uri: "/")
+		}
+		
+		if( !sessionReponseInstance.getVisible() ){
+			flash.messageErreur = "Cette question n'est pas accessible."
+			redirect(uri: "/")
+			return
 		}
 		
 		switch (sessionReponseInstance.getPhase()) {
@@ -104,6 +129,12 @@ class SessionReponseController {
 			redirect(uri: "/")
 		}
 		
+		if( !reponseInstance.sessionRep.getVisible() ){
+			flash.messageErreur = "Cette question n'est pas accessible."
+			redirect(uri: "/")
+			return
+		}
+		
 		if( session.aVote?.sessionRep?.getId() == reponseInstance.sessionRep.getId() ) {
 			flash.messageInfo = "Vous avez deja vot&eacute;"
 			redirect( action: "phaseResultat", id: reponseInstance.sessionRep.getId() )
@@ -129,6 +160,12 @@ class SessionReponseController {
 		if( !sessionReponseInstance) {
 			flash.messageErreur = "Session inconnue"
 			redirect(uri: "/")
+		}
+		
+		if( !sessionReponseInstance.getVisible() ){
+			flash.messageErreur = "Cette question n'est pas accessible."
+			redirect(uri: "/")
+			return
 		}
 		
 		if ( sessionReponseInstance.getPhase() != "resultat") {
