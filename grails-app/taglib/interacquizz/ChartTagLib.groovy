@@ -20,7 +20,7 @@ class ChartTagLib {
 		itVotes = votes.iterator()
 		while( itVotes.hasNext() ) {
 			def vote = itVotes.next()
-			def percent = vote.value * 100 / nbVotes
+			def percent = vote.value * 100 / (nbVotes==0?1:nbVotes)
 			
 			def reponse = Reponse.get( vote.key )
 			

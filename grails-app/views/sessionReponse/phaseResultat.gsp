@@ -38,7 +38,15 @@
 				</div>
 			</g:if>
 			<g:else>
-				<g:chart votes="${ votes }" />
+				<g:if test="${ votes.isEmpty() }" >
+					<div class="alert" role="status">
+					<h4>Pas de graphique à présenter</h4>
+					Il n'y a pas de réponses à cette question !
+				</div>
+				</g:if>
+				<g:else>
+					<g:chart votes="${ votes }" />
+				</g:else>
 			</g:else>
 		</fieldset>
 	</div>
