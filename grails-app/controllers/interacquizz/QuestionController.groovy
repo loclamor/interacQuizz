@@ -15,8 +15,9 @@ class QuestionController {
 			redirect(controller: "professeur", action: "connect")
 			return
 		}
-        params.max = Math.min(max ?: 10, 100)
-        [questionInstanceList: Question.list(params), questionInstanceTotal: Question.count()]
+        
+		def questionInstanceList = Question.findAllByCreateur(session.prof)
+        [questionInstanceList: questionInstanceList, questionInstanceTotal: questionInstanceList.size()]
     }
 
     def create() {
