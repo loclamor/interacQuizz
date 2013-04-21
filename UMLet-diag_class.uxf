@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="12.0">
+<diagram program="umlet" version="11.5.1">
   <zoom_level>10</zoom_level>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>670</x>
-      <y>210</y>
+      <x>560</x>
+      <y>240</y>
       <w>50</w>
-      <h>130</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>30;30;30;110</additional_attributes>
+    <additional_attributes>30;30;30;80</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
@@ -18,7 +18,7 @@
       <x>40</x>
       <y>320</y>
       <w>190</w>
-      <h>170</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>Question
 --
@@ -26,46 +26,46 @@ intitulé: String
 commentaire: String
 createur: Professeur
 sessions[]: SessionReponse
---
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>90</x>
-      <y>160</y>
+      <x>100</x>
+      <y>230</y>
       <w>50</w>
-      <h>180</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>30;30;30;160</additional_attributes>
+    <additional_attributes>30;30;30;90</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>340</x>
+      <x>300</x>
       <y>320</y>
       <w>130</w>
-      <h>170</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>SessionReponse
 --
+nom: String
 question: Question
 reponse[]:Reponse
 visible:Booleen
 phase: String
 clee_acces: String
---</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>50</x>
-      <y>60</y>
+      <x>60</x>
+      <y>150</y>
       <w>150</w>
-      <h>130</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Professeur
 --
@@ -73,28 +73,28 @@ nom: String
 prenom: String
 identifiant: String
 mot_de_passe: String
---
+
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>440</x>
-      <y>380</y>
-      <w>200</w>
+      <x>400</x>
+      <y>360</y>
+      <w>120</w>
       <h>50</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>180;30;30;30</additional_attributes>
+    <additional_attributes>100;30;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>620</x>
+      <x>500</x>
       <y>320</y>
-      <w>170</w>
-      <h>170</h>
+      <w>180</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>Reponse
 --
@@ -103,7 +103,7 @@ commentaire: String
 session: SessionReponse
 valide: Booleen
 
---
+
 
 </panel_attributes>
     <additional_attributes/>
@@ -111,8 +111,8 @@ valide: Booleen
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>630</x>
-      <y>160</y>
+      <x>520</x>
+      <y>190</y>
       <w>140</w>
       <h>80</h>
     </coordinates>
@@ -125,11 +125,11 @@ reponse: Reponse</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>380</y>
-      <w>160</w>
+      <y>360</y>
+      <w>120</w>
       <h>50</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>30;30;140;30</additional_attributes>
+    <additional_attributes>30;30;100;30</additional_attributes>
   </element>
 </diagram>
