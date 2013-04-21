@@ -287,6 +287,12 @@ class ReponseController {
         }
 
         try {
+			println("deleting reponse " + reponseInstance + "...")
+			def votes = Vote.findAllByReponse(reponseInstance)
+			for (Vote vote : votes) {
+				println("deleting a vote...")
+				vote.delete(flush: true)
+			}
 			reponseInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'reponse.label', default: 'Reponse'), id])
             redirect(controller: "sessionReponse", action: "edit", id: sessId )

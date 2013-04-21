@@ -444,12 +444,20 @@ class SessionReponseController {
 
         try {
 			def reponses = Reponse.findAllBySessionRep(sessionReponseInstance)
+			println("deleting session " + sessionReponseInstance.nom + "...")
 			for (Reponse rep : reponses) {
+				println("deleting reponse " + rep + "...")
+				def votes = Vote.findAllByReponse(rep)
+				for (Vote vote : votes) {
+					println("deleting a vote...")
+					vote.delete(flush: true)
+				}
 				rep.delete(flush: true)
 			}
+			def idQuestion = sessionReponseInstance.getQuestion().getId()
             sessionReponseInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), id])
-            redirect(action: "list")
+            redirect(controller: "sessionReponse", action: "list", id: idQuestion)
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'sessionReponse.label', default: 'SessionReponse'), id])

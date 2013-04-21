@@ -118,10 +118,18 @@ class QuestionController {
         }
 
         try {
+			println("deleting question " + questionInstance + "...")
 			def sessionRep = SessionReponse.findAllByQuestion(questionInstance)
 			for (SessionReponse sess : sessionRep) {
 				def reponses = Reponse.findAllBySessionRep(sess)
+				println("deleting session " + sess.nom + "...")
 				for (Reponse rep : reponses) {
+					println("deleting reponse " + rep + "...")
+					def votes = Vote.findAllByReponse(rep)
+					for (Vote vote : votes) {
+						println("deleting a vote...")
+						vote.delete(flush: true)
+					}
 					rep.delete(flush: true)
 				}
 				sess.delete(flush: true)
