@@ -14,7 +14,7 @@
 				<legend>
 					${ sessionReponseInstance.getQuestion() }
 					<span class="muted pull-right">
-						Phase de validation des réponses 
+						Validation des réponses 
 						<g:link controller="sessionReponse" action="phaseVote" id="${ sessionReponseInstance.getId() }" class="btn" role="button" ><i class="icon-fast-forward"></i> Vote</g:link>
 					</span>
 				</legend>

@@ -85,7 +85,7 @@ class SessionReponseController {
 				return
 				break;
 			case "vote":
-				if( session.aVote ) {
+				if( session.aVote?.sessionRep?.getId() == sessionReponseInstance.getId() ) {
 					flash.messageInfo = "Vous avez deja vot&eacute;"
 					redirect(action: "phaseResultat", id: id)
 					return
@@ -104,7 +104,7 @@ class SessionReponseController {
 			redirect(uri: "/")
 		}
 		
-		if( session.aVote ) {
+		if( session.aVote?.sessionRep?.getId() == reponseInstance.sessionRep.getId() ) {
 			flash.messageInfo = "Vous avez deja vot&eacute;"
 			redirect( action: "phaseResultat", id: reponseInstance.sessionRep.getId() )
 			return

@@ -13,7 +13,7 @@
 		<fieldset>
 			<legend>
 				${ sessionReponseInstance.getQuestion() }
-				<span class="muted pull-right"> Phase de vote </span>
+				<span class="muted pull-right"> Vote </span>
 			</legend>
 			<g:if test="${flash.messageErreur}">
 				<div class="alert alert-error" role="status">
