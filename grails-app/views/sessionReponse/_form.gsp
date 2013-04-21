@@ -2,6 +2,17 @@
 <%@ page import="interacquizz.Reponse"%>
 
 
+<div
+	class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'phase', 'error')} control-group ">
+	<label for="phase" class="control-label"> <g:message
+			code="sessionReponse.nom.label" default="Nom" />
+
+	</label>
+	<div class="controls">
+		<g:textField name="nom" class="span10" required=""
+			value="${sessionReponseInstance?.nom}" />
+	</div>
+</div>
 
 <div
 	class="fieldcontain ${hasErrors(bean: sessionReponseInstance, field: 'phase', 'error')} control-group ">
@@ -24,7 +35,7 @@
 
 	</label>
 	<div class="controls">
-		<g:passwordField name="cleeAcces" class="span10"
+		<g:passwordField name="cleeAcces" class="span10" required=""
 			value="${sessionReponseInstance?.cleeAcces}" />
 	</div>
 </div>
