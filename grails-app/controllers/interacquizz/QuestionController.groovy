@@ -43,21 +43,6 @@ class QuestionController {
         redirect(action: "list", id: questionInstance.id)
     }
 
-    def show(Long id) {
-		if( !session.prof ) {
-			redirect(controller: "professeur", action: "connect")
-			return
-		}
-        def questionInstance = Question.get(id)
-        if (!questionInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])
-            redirect(action: "list")
-            return
-        }
-
-        [questionInstance: questionInstance]
-    }
-
     def edit(Long id) {
 		if( !session.prof ) {
 			redirect(controller: "professeur", action: "connect")
